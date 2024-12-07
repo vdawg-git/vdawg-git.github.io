@@ -1,33 +1,36 @@
 import { notFound } from "next/navigation"
 import { CustomMDX } from "app/components/mdx"
-import { getBlogPosts } from "app/blog/utils"
 import { baseUrl } from "app/sitemap"
 import { formatDate } from "app/lib/helper"
+import { getProjects } from "../utils"
 
-export async function generateStaticParams() {
-	const posts = getBlogPosts()
+type Parameter = {
+	slug: string
+}
+type Params = readonly Parameter[]
 
-	return posts.map((post) => ({
-		slug: post.slug,
+export async function generateStaticParams(): Promise<Params> {
+	const projects = getProjects()
+
+	return projects.map(({ slug }) => ({
+		slug,
 	}))
 }
 
-export async function generateMetadata(props: {
-	params: Promise<{ slug: string }>
-}) {
+export async function generateMetadata(props: { params: Promise<Parameter> }) {
 	const params = await props.params
-	const post = getBlogPosts().find((post) => post.slug === params.slug)
-	if (!post) {
+	const project = getProjects().find((post) => post.slug === params.slug)
+	if (!project) {
 		return
 	}
 
-	let {
+	const {
 		title,
 		publishedAt: publishedTime,
 		summary: description,
 		image,
-	} = post.metadata
-	let ogImage = image
+	} = project.metadata
+	const ogImage = image
 		? image
 		: `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
@@ -39,7 +42,7 @@ export async function generateMetadata(props: {
 			description,
 			type: "article",
 			publishedTime,
-			url: `${baseUrl}/blog/${post.slug}`,
+			url: `${baseUrl}/blog/${project.slug}`,
 			images: [
 				{
 					url: ogImage,
@@ -55,13 +58,12 @@ export async function generateMetadata(props: {
 	}
 }
 
-export default async function Blog(props: {
-	params: Promise<{ slug: string }>
-}) {
+export default async function Project(props: { params: Promise<Parameter> }) {
 	const params = await props.params
-	const post = getBlogPosts().find((post) => post.slug === params.slug)
 
-	if (!post) {
+	const project = getProjects().find((post) => post.slug === params.slug)
+
+	if (!project) {
 		notFound()
 	}
 
@@ -74,31 +76,31 @@ export default async function Blog(props: {
 					__html: JSON.stringify({
 						"@context": "https://schema.org",
 						"@type": "BlogPosting",
-						headline: post.metadata.title,
-						datePublished: post.metadata.publishedAt,
-						dateModified: post.metadata.publishedAt,
-						description: post.metadata.summary,
-						image: post.metadata.image
-							? `${baseUrl}${post.metadata.image}`
-							: `/og?title=${encodeURIComponent(post.metadata.title)}`,
-						url: `${baseUrl}/blog/${post.slug}`,
+						headline: project.metadata.title,
+						datePublished: project.metadata.publishedAt,
+						dateModified: project.metadata.publishedAt,
+						description: project.metadata.summary,
+						image: project.metadata.image
+							? `${baseUrl}${project.metadata.image}`
+							: `/og?title=${encodeURIComponent(project.metadata.title)}`,
+						url: `${baseUrl}/projects/${project.slug}`,
 						author: {
-							"@type": "Person",
-							name: "My Portfolio",
+							"@type": "VDawg",
+							name: "Portfolio",
 						},
 					}),
 				}}
 			/>
 			<h1 className="title font-semibold text-2xl tracking-tighter">
-				{post.metadata.title}
+				{project.metadata.title}
 			</h1>
 			<div className="flex justify-between items-center mt-2 mb-8 text-sm">
 				<p className="text-sm text-neutral-600 dark:text-neutral-400">
-					{formatDate(post.metadata.publishedAt)}
+					{formatDate(project.metadata.publishedAt)}
 				</p>
 			</div>
 			<article className="prose">
-				<CustomMDX source={post.content} />
+				<CustomMDX source={project.content} />
 			</article>
 		</section>
 	)
