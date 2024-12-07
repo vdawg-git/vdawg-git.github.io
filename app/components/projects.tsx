@@ -1,36 +1,48 @@
 import Link from "next/link"
-import { formatDate } from "app/lib/helper"
+import Image from "next/image"
+
 import { getProjects } from "app/projects/utils"
 
 export function Projects() {
-	const allBlogs = getProjects()
+	const projects = getProjects()
 
 	return (
-		<div>
-			{allBlogs
+		<div className="flex gap-6 flex-wrap  ">
+			{projects
 				.sort((a, b) => {
-					if (
-						new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-					) {
+					if (Number(a.metadata.sort) > Number(b.metadata.sort)) {
 						return -1
 					}
 					return 1
 				})
-				.map((post) => (
-					<Link
-						key={post.slug}
-						className="flex flex-col space-y-1 mb-4"
-						href={`/projects/${post.slug}`}
+				.map(({ metadata, slug }) => (
+					<div
+						className="w-full flex group  gap-4 items-center md:flex-row space-x-0 md:space-x-2"
+						key={slug}
 					>
-						<div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-							<p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
-								{formatDate(post.metadata.publishedAt, false)}
-							</p>
+						{metadata.image && (
+							<Link
+								key={slug}
+								className="flex flex-col size-[240px] shrink-0 grow-0  space-y-1 mb-4"
+								href={`/projects/${slug}`}
+							>
+								<Image
+									src={metadata.image}
+									alt={metadata.title}
+									width={240}
+									height={240}
+									className={`sepia-80  object-cover min-h-[240px]   group-hover:sepia-0 transition-all`}
+									style={{ backgroundColor: `var(--color-${metadata.color})` }}
+								/>
+							</Link>
+						)}
+						<div className="flex flex-col">
 							<p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-								{post.metadata.title}
+								{metadata.title}
 							</p>
+							<p className="text-gray1">{metadata.summary}</p>
 						</div>
-					</Link>
+					</div>
 				))}
 		</div>
 	)

@@ -1,22 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-	--font-mono: "Fira Code", monospace;
+	--font-mono: "Courier Prime", monospace;
+
 	--font-sans: initial;
 	--color-*: initial;
+	--text-*: initial;
+	--tracking-*: initial;
 	--color-black: "black";
-	--color-red-*: initial;
-	--color-blue-*: initial;
-	--color-neutral-*: initial;
-	--color-orange-*: initial;
-	--color-amber-*: initial;
-	--color-yellow-*: initial;
-	--color-lime-*: initial;
-	--color-green-*: initial;
-	--color-emerald-*: initial;
-	--color-violet-*: initial;
-	--color-gray-*: initial;
-	--color-gray-*: initial;
+
 	--color-fg0: #ddc7a1;
 	--color-fg: #d4be98;
 	--color-fg1: #c5b18d;
@@ -53,12 +45,15 @@ html {
 	font-family: "Courier Prime", monospace;
 	color: var(--color-fg0);
 	color-scheme: dark;
-	min-width: 360px;
+	min-width: 22.5rem;
+	font-size: 1.25rem;
+	/* text-shadow: 0 0 2px #c8c8c8; */
+	text-shadow: 0 0 6px theme(colors.red / 25%);
 }
 
 ::selection {
-	background-color: #47a3f3;
-	color: #fefefe;
+	background-color: var(--color-yellow);
+	color: var(--color-fg0);
 }
 
 :root {
@@ -79,7 +74,7 @@ html {
 	margin-left: -1em;
 	padding-right: 0.5em;
 	width: 80%;
-	max-width: 700px;
+	max-width: 43.75rem;
 	cursor: pointer;
 }
 
@@ -101,7 +96,7 @@ html {
 }
 
 .prose pre {
-	@apply bg-bg0 rounded-lg overflow-x-auto border  border-bg0 py-2 px-3 text-sm;
+	@apply bg-bg0 rounded-lg overflow-x-auto border  border-bg0 py-2 px-3;
 }
 
 .prose code {
@@ -128,19 +123,19 @@ html {
 }
 
 .prose h1 {
-	@apply text-4xl font-medium tracking-tight mt-6 mb-2;
+	@apply font-bold text-red  mt-6 mb-2;
 }
 
 .prose h2 {
-	@apply text-xl font-medium tracking-tight mt-6 mb-2;
+	@apply font-medium text-orange  mt-6 mb-2;
 }
 
 .prose h3 {
-	@apply text-xl font-medium tracking-tight mt-6 mb-2;
+	@apply font-medium text-yellow  mt-6 mb-2;
 }
 
 .prose h4 {
-	@apply text-lg font-medium tracking-tight mt-6 mb-2;
+	@apply font-medium  mt-6 mb-2;
 }
 
 .prose strong {

@@ -2,8 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 
 const navItems = {
-	"/": {
-		ToRender: () => <>home</>,
+	// "/": {
+	// 	ToRender: () => <>VDawg</>,
+	// },
+	"/projects": {
+		ToRender: () => <>Projects</>,
 	},
 	// "/blog": {
 	// 	name: "blog",
@@ -12,14 +15,18 @@ const navItems = {
 
 export function Navbar() {
 	return (
-		<aside className="-ml-[8px] mb-16 tracking-tight">
+		<aside className="-ml-[8px] mb-2 ">
 			<div className="lg:sticky lg:top-20">
 				<nav
-					className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+					className="flex flex-row  relative px-0 pb-0 fade md:overflow-auto items-center scroll-pr-1 md:relative"
 					id="nav"
 				>
-					<Image src={"/logo.svg"} alt="logo" width={30} height={30} />
-					<div className="flex flex-row space-x-0 pr-10">
+					<Link href="/" className="flex gap-3 items-center">
+						<Image src={"/logo.svg"} alt="logo" width={48} height={48} />
+						VDawg
+					</Link>
+					<div className="grow"></div>
+					<div className="flex flex-row space-x-0 pr-10 items-center">
 						{Object.entries(navItems).map(([path, { ToRender }]) => {
 							return (
 								<Link
