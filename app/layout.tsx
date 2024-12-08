@@ -5,6 +5,7 @@ import Footer from "./components/footer"
 import { baseUrl } from "./sitemap"
 import "@fontsource/courier-prime/400.css"
 import "@fontsource/courier-prime/700.css"
+import { initialzeCodeBackground } from "./lib/backgroundCode/backgroundCode"
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -49,6 +50,16 @@ export default function RootLayout({
 				</main>
 
 				<div className="fixed inset-x-0 bottom-0 bg-radial-[100%_80%_at_60%_100%] mix-blend-color-dodge from-yellow/80 size-full  z-10 pointer-events-none"></div>
+
+				<div className="code-background absolute inset-0 -z-50 mx-auto max-w-[1320px] text-xs opacity-[15%]">
+					<pre>
+						<code id="bg-code" className="hljs absolute top-24 left-0">
+							{Array.from({ length: 90 }, (_, index) =>
+								index.toString().repeat(index)
+							).join("\n")}
+						</code>
+					</pre>
+				</div>
 			</body>
 		</html>
 	)
