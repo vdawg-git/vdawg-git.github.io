@@ -1,1 +1,112 @@
-<svg width="100" height="140" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><clipPath id="prefix__circlebottomcut"><circle cx="37" cy="78" r="20" fill="#FF9D29"/></clipPath><clipPath id="prefix__ringcut"><path fill-rule="evenodd" clip-rule="evenodd" d="M63 29a6 6 0 100-12 6 6 0 000 12zm0 14c11.046 0 20-8.954 20-20S74.046 3 63 3s-20 8.954-20 20 8.954 20 20 20z" fill="#FF9D29"/></clipPath><clipPath id="prefix__middlecut"><path d="M43 23h14v55H37c3.874-4.582 6-10.39 6-16.39V23z" fill="#FF9D29"/></clipPath><foreignObject width="100" height="100" x="0" y="0" clip-path="url(#prefix__circlebottomcut)"><div xmlns="http://www.w3.org/1999/xhtml"><style>@keyframes circle{0%{transform:rotate(0deg)}to{transform:rotate(-360deg)}}@keyframes ring{0%{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes middle{0%{background-position:top}to{background-position:bottom}}@keyframes shadow{0%{filter:drop-shadow(0 0 10px rgba(255,60,0,.4))}to{filter:drop-shadow(0 0 10px rgba(0,0,0,.3))}}:root{--orangeDark:#ff3c00;--orangeLight:#ffa12d;--duration:8s}svg{filter:drop-shadow(0 5px 5px rgba(100,59,0,.2)) drop-shadow(0 2px 2px rgba(100,10,0,.15))}circlebottom{background:conic-gradient(from 90deg,var(--orangeDark),var(--orangeLight),var(--orangeDark));max-width:100%;max-height:100%;top:58%;left:17%;animation:circle var(--duration) linear infinite}circlebottom,middle,ring{position:absolute}circlebottom,ring{width:40%;height:40%;text-align:center;transform:rotate(0deg)}ring{background-image:conic-gradient(from -90deg,var(--orangeDark),var(--orangeLight),var(--orangeDark));max-width:40%;max-height:40%;top:3%;left:43%;background-position:middle;animation:ring var(--duration) linear infinite}middle{background-image:linear-gradient(0deg,var(--orangeDark),var(--orangeLight),var(--orangeDark),var(--orangeLight),var(--orangeDark));background-size:200% 200%;background-position:top;width:20%;height:55%;max-width:20%;max-height:55%;top:23%;left:37%;transform:translateY(0);animation:middle var(--duration) linear infinite}</style><circlebottom/></div></foreignObject><foreignObject width="100%" height="100%" x="0" y="0" clip-path="url(#prefix__ringcut)"><div xmlns="http://www.w3.org/1999/xhtml"><ring/></div></foreignObject><foreignObject width="100%" height="100%" x="0" y="0" clip-path="url(#prefix__middlecut)"><div xmlns="http://www.w3.org/1999/xhtml"><middle/></div></foreignObject></svg>
+<svg width="100" height="140" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <clipPath id="prefix__circlebottomcut">
+    <circle cx="37" cy="78" r="20" fill="#FF9D29" />
+  </clipPath>
+  <clipPath id="prefix__ringcut">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M63 29a6 6 0 100-12 6 6 0 000 12zm0 14c11.046 0 20-8.954 20-20S74.046 3 63 3s-20 8.954-20 20 8.954 20 20 20z"
+      fill="#FF9D29" />
+  </clipPath>
+  <clipPath id="prefix__middlecut">
+    <path d="M43 23h14v55H37c3.874-4.582 6-10.39 6-16.39V23z" fill="#FF9D29" />
+  </clipPath>
+  <foreignObject width="100" height="100" x="0" y="0" clip-path="url(#prefix__circlebottomcut)">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        @keyframes circle {
+          0% {
+            transform: rotate(0deg)
+          }
+
+          to {
+            transform: rotate(-360deg)
+          }
+        }
+
+        @keyframes ring {
+          0% {
+            transform: rotate(0deg)
+          }
+
+          to {
+            transform: rotate(360deg)
+          }
+        }
+
+        @keyframes middle {
+          0% {
+            background-position: top
+          }
+
+          to {
+            background-position: bottom
+          }
+        }
+
+        :root {
+          --orangeDark: #ff3c00;
+          --orangeLight: #ffa12d;
+          --duration: 8s
+        }
+
+        circlebottom {
+          background: conic-gradient(from 90deg, var(--orangeDark), var(--orangeLight), var(--orangeDark));
+          max-width: 100%;
+          max-height: 100%;
+          top: 58%;
+          left: 17%;
+          animation: circle var(--duration) linear infinite
+        }
+
+        circlebottom,
+        middle,
+        ring {
+          position: absolute
+        }
+
+        circlebottom,
+        ring {
+          width: 40%;
+          height: 40%;
+          text-align: center;
+          transform: rotate(0deg)
+        }
+
+        ring {
+          background-image: conic-gradient(from -90deg, var(--orangeDark), var(--orangeLight), var(--orangeDark));
+          max-width: 40%;
+          max-height: 40%;
+          top: 3%;
+          left: 43%;
+          background-position: middle;
+          animation: ring var(--duration) linear infinite
+        }
+
+        middle {
+          background-image: linear-gradient(0deg, var(--orangeDark), var(--orangeLight), var(--orangeDark), var(--orangeLight), var(--orangeDark));
+          background-size: 200% 200%;
+          background-position: top;
+          width: 20%;
+          height: 55%;
+          max-width: 20%;
+          max-height: 55%;
+          top: 23%;
+          left: 37%;
+          transform: translateY(0);
+          animation: middle var(--duration) linear infinite
+        }
+      </style>
+      <circlebottom />
+    </div>
+  </foreignObject>
+  <foreignObject width="100%" height="100%" x="0" y="0" clip-path="url(#prefix__ringcut)">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <ring />
+    </div>
+  </foreignObject>
+  <foreignObject width="100%" height="100%" x="0" y="0" clip-path="url(#prefix__middlecut)">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <middle />
+    </div>
+  </foreignObject>
+</svg>
