@@ -8,6 +8,7 @@ type Metadata = {
 	image?: string
 	sort?: number
 	color?: string
+	banner?: string
 }
 
 export type MarkdownData = {
@@ -29,6 +30,7 @@ function parseFrontmatter(fileContent: string) {
 				.join(": ")
 				.trim()
 				.replace(/^['"](.*)['"]$/, "$1") // Remove quotes
+			// @ts-ignore wut
 			accumulator[key.trim() as keyof Metadata] = value
 			return accumulator
 		},

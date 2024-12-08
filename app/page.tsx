@@ -18,7 +18,7 @@ export default function Page() {
 				</Button>
 			</div>
 			<p className="mb-4 text-gray2 ">
-				{`Front-end developer. I like code, design and art. Always looking for new challenges.`}
+				{`I like code, design and art. Always looking for new challenges.`}
 			</p>
 			<div className="my-8">
 				<Projects />
