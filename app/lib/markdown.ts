@@ -10,6 +10,12 @@ type Metadata = {
 	color?: string
 }
 
+export type MarkdownData = {
+	metadata: Metadata
+	slug: string
+	content: string
+}
+
 function parseFrontmatter(fileContent: string) {
 	const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
 	const match = frontmatterRegex.exec(fileContent)
@@ -41,7 +47,7 @@ function readMDXFile(filePath: string) {
 	return parseFrontmatter(rawContent)
 }
 
-export function getMDXData(dir: string) {
+export function getMDXData(dir: string): MarkdownData[] {
 	return getMDXFiles(dir).map((file) => {
 		const { metadata, content } = readMDXFile(path.join(dir, file))
 		const slug = path.basename(file, path.extname(file))

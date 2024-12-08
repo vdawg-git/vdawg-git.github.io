@@ -1,3 +1,6 @@
+import clsx, { type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
 export function formatDate(date: string, includeRelative = false) {
 	const currentDate = new Date()
 	if (!date.includes("T")) {
@@ -31,4 +34,8 @@ export function formatDate(date: string, includeRelative = false) {
 	}
 
 	return `${fullDate} (${formattedDate})`
+}
+
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs))
 }

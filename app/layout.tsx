@@ -41,12 +41,14 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className="antialiased h-screen w-screen   ">
-				<main className="min-h-0 h-full mx-6 lg:mx-8     min-w-0  flex flex-col px-2 md:px-0">
+			<body className="antialiased relative h-screen  bg-bg0">
+				<main className="min-h-0 h-full min-w-0   flex flex-col px-4 ">
 					<Navbar />
 					<div className="grow">{children}</div>
 					<Footer />
 				</main>
+
+				<div className="fixed inset-x-0 bottom-0 bg-radial-[100%_80%_at_60%_100%] mix-blend-color-dodge from-yellow/80 size-full  z-10 pointer-events-none"></div>
 			</body>
 		</html>
 	)
