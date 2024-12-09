@@ -1,5 +1,6 @@
 import { Projects } from "app/components/projects"
 import { Button } from "./components/button"
+import { GlitchText } from "./components/glitchText"
 
 export default function Page() {
 	return (
@@ -10,10 +11,9 @@ export default function Page() {
 						Christofer Koeth <span className="text-gray0 italic">VDawg </span>{" "}
 						<span className="text-gray0">(⁀ᗢ⁀)</span>
 					</h1>
-					<h2 className="text-lg">
-						Front-End Developer,
-						<br /> Webdesigner
-					</h2>
+					<GlitchText as={"h2"} className="text-lg">
+						{`Front-End Developer,\nWebdesigner`}
+					</GlitchText>
 				</hgroup>
 
 				<Button className="flex " as="a" href="mailto:imchris@tuta.io">
