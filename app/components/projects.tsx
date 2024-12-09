@@ -5,6 +5,8 @@ import { getProjects } from "app/projects/utils"
 import clsx from "clsx"
 import type { MarkdownData } from "app/lib/markdown"
 import type React from "react"
+import type { CSSProperties } from "react"
+import { Button } from "./button"
 
 export function Projects() {
 	const projects = getProjects()
@@ -43,21 +45,34 @@ function smallItem({ metadata, slug }: MarkdownData, index: number) {
 						alt={metadata.title}
 						width={240}
 						height={240}
-						className={`sepia-80 saturate-0 p-2 max-h-[240px] group-hover:saturate-100     object-cover min-h-[240px]   group-hover:sepia-0 `}
+						style={{} as CSSProperties}
+						className={`sepia-40 brightness-75 group-hover:brightness-100
+							 [--tw-hue-rotate:url(#pixelate)] 
+							 p-2 max-h-[240px]   group-hover:hue-rotate-0     object-cover min-h-[240px]   group-hover:sepia-0 `}
 					/>
 				</Link>
 			)}
-			<div className="flex flex-col p-3">
-				<Link
+			<div className="flex flex-col justify-between grow items-start p-6">
+				<div>
+					<Link
+						href={`/projects/${slug}`}
+						className="text-neutral-900 hover:underline group-hover:text-[var(--c)] text-lg dark:text-neutral-100 tracking-tight"
+						style={
+							{ "--c": `var(--color-${metadata.color})` } as React.CSSProperties
+						}
+					>
+						{metadata.title}
+					</Link>
+					<p className="text-gray1">{metadata.summary}</p>
+				</div>
+
+				<Button
+					className="justify-self-end mt-4"
+					as="a"
 					href={`/projects/${slug}`}
-					className="text-neutral-900 hover:underline group-hover:text-[var(--c)] text-lg dark:text-neutral-100 tracking-tight"
-					style={
-						{ "--c": `var(--color-${metadata.color})` } as React.CSSProperties
-					}
 				>
-					{metadata.title}
-				</Link>
-				<p className="text-gray1">{metadata.summary}</p>
+					Check out
+				</Button>
 			</div>
 		</div>
 	)
