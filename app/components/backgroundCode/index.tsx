@@ -13,7 +13,7 @@ export function BackgroundCode() {
 
 	return (
 		<div className="contain-[style_size_layout] -z-30 absolute inset-0 pointer-events-none">
-			<div className="contain-[style_layout_size] absolute -mt-16  duration-16   inset-0 -z-50 mx-auto max-w-[1320px] text-xs opacity-[15%]">
+			<div className="contain-[style_layout_size] absolute -mt-16  duration-16   inset-0 -z-50 mx-auto max-w-[1320px] text-xs opacity-[10%]">
 				<pre>
 					<code
 						id="bg-code"
