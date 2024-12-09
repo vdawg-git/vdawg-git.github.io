@@ -22,13 +22,13 @@ export const Button: React.FC<CustomButtonProps> = ({
 	<Tag
 		{...props}
 		className={cn(
-			"inline-flex items-center hover:text-orange group justify-center",
+			"inline-flex items-center hover:text-orange group/button justify-center",
 			props.className
 		)}
 	>
 		<pre>
 			{"[ "}
-			<span className="group-hover:underline group-hover:text-yellow">
+			<span className="group-hover/button:underline group-hover/button:text-yellow">
 				{props.children}
 			</span>{" "}
 			{" ]"}
