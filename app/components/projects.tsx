@@ -43,7 +43,7 @@ function smallItem({ metadata, slug }: MarkdownData, index: number) {
 						alt={metadata.title}
 						width={240}
 						height={240}
-						className={`sepia-80 saturate-0 p-2 max-h-[240px] group-hover:saturate-100     object-cover min-h-[240px]   group-hover:sepia-0 transition-all`}
+						className={`sepia-80 saturate-0 p-2 max-h-[240px] group-hover:saturate-100     object-cover min-h-[240px]   group-hover:sepia-0 `}
 					/>
 				</Link>
 			)}

@@ -1,13 +1,14 @@
 {
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbopack",
+		"dev": "next dev",
 		"build": "next build",
 		"start": "next start"
 	},
 	"dependencies": {
 		"@fontsource/courier-prime": "^5.1.0",
 		"@tailwindcss/postcss": "4.0.0-beta.6",
+		"@types/diff": "^6.0.0",
 		"@types/node": "20.11.17",
 		"@types/react": "19.0.1",
 		"@types/react-dom": "19.0.1",
@@ -30,5 +31,6 @@
 			"@types/react": "19.0.1",
 			"@types/react-dom": "19.0.1"
 		}
-	}
+	},
+	"devDependencies": {}
 }

@@ -5,7 +5,7 @@ import Footer from "./components/footer"
 import { baseUrl } from "./sitemap"
 import "@fontsource/courier-prime/400.css"
 import "@fontsource/courier-prime/700.css"
-import { initialzeCodeBackground } from "./lib/backgroundCode/backgroundCode"
+import { BackgroundCode } from "./components/backgroundCode"
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -42,24 +42,29 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className="antialiased relative h-screen  bg-bg0">
-				<main className="min-h-0 h-full min-w-0   flex flex-col px-4 ">
+			<body className="antialiased relative min-h-screen  bg-bg0">
+				<main className="min-h-0 h-full min-w-0  z-20  flex flex-col px-4 ">
 					<Navbar />
 					<div className="grow">{children}</div>
 					<Footer />
 				</main>
 
-				<div className="fixed inset-x-0 bottom-0 bg-radial-[100%_80%_at_60%_100%] mix-blend-color-dodge from-yellow/80 size-full  z-10 pointer-events-none"></div>
+				<div
+					className="absolute bg-repeat  mix-blend-hard-light opacity-1 size-full inset-0 pointer-events-none"
+					style={{ backgroundImage: "url('/grain.webp')" }}
+				/>
 
-				<div className="code-background absolute inset-0 -z-50 mx-auto max-w-[1320px] text-xs opacity-[15%]">
-					<pre>
-						<code id="bg-code" className="hljs absolute top-24 left-0">
-							{Array.from({ length: 90 }, (_, index) =>
-								index.toString().repeat(index)
-							).join("\n")}
-						</code>
-					</pre>
+				<div className="fixed inset-x-0 z-20 bottom-0 bg-radial-[100%_80%_at_60%_90%] mix-blend-color-dodge from-fg/80 size-full   pointer-events-none" />
+
+				{/* background Gradient Top */}
+				<div className="fixed inset-x-0 top-0 -z-10 h-48 bg-gradient-to-b from-bg0 to-transparent  " />
+
+				{/* background Gradient Bottom  */}
+				<div className="fixed inset-x-0 bottom-0 -z-10 max-h-0 ">
+					<div className="absolute inset-x-0 bottom-0 -z-40 h-96 bg-gradient-to-b from-transparent to-bg0 [contain:layout]" />
 				</div>
+
+				<BackgroundCode />
 			</body>
 		</html>
 	)

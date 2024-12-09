@@ -2,7 +2,7 @@ import type { BackgroundCodeArgument } from "./types"
 
 export function initialzeCodeBackground() {
 	const codeWorker = new Worker(
-		new URL("BackgroundCodeWorker", import.meta.url),
+		new URL("./backgroundCode.worker.ts", import.meta.url),
 		{
 			type: "module",
 		}
@@ -15,7 +15,7 @@ export function initialzeCodeBackground() {
 	const element = getAppElement()
 	if (!element) {
 		console.error("Main element for live-code not found")
-		return
+		return () => {}
 	}
 
 	observer.observe(element, {

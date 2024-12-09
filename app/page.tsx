@@ -7,10 +7,13 @@ export default function Page() {
 			<div className="min-h-80 flex flex-col max-w-2xl  mx-auto   items-start justify-center   h-[50vh] max-h-120">
 				<hgroup className="mb-8 -mt-15 ">
 					<h1 className="text-gray2">
-						Christofer Koeth <span className="text-gray0 italic">VDawg</span>
+						Christofer Koeth <span className="text-gray0 italic">VDawg </span>{" "}
+						<span className="text-gray0">(⁀ᗢ⁀)</span>
 					</h1>
-					<h2 className="text-lg">Front-End Developer,</h2>
-					<h2 className="text-lg">Webdesigner</h2>
+					<h2 className="text-lg">
+						Front-End Developer,
+						<br /> Webdesigner
+					</h2>
 				</hgroup>
 
 				<Button className="flex " as="a" href="mailto:imchris@tuta.io">

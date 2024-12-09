@@ -71,7 +71,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 	const { metadata, slug, content } = project
 
 	return (
-		<section>
+		<section className="max-w-2xl mx-auto">
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning

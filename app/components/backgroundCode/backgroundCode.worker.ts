@@ -1,6 +1,7 @@
 import { highlight } from "sugar-high"
 import { diffLines, type Change } from "diff"
 import prettier from "prettier"
+import parserHtml from "prettier/plugins/html"
 
 import type { BackgroundCodeArgument } from "./types"
 import {
@@ -9,8 +10,10 @@ import {
 	map,
 	merge,
 	pairwise,
+	skip,
 	Subject,
 	switchMap,
+	take,
 } from "rxjs"
 
 const colors = {
@@ -19,13 +22,17 @@ const colors = {
 }
 const longStringsRegex = /(?<==")([^"]{20,})(?=")/gm
 const noContentTagsRegex = /(<(\w*)[^>]*)><\/\2>/gm
+const scriptTagRegex = /<script.*>.*<\/script>/gm
 
-const message$ = new Subject<MessageEvent<BackgroundCodeArgument>>()
-onmessage = (message) => message$.next(message)
+const message$ = new Subject<BackgroundCodeArgument>()
+self.onmessage = (event: MessageEvent<BackgroundCodeArgument>) => {
+	console.log(event.data)
+	message$.next(event.data)
+}
 
 const highlighted$ = message$.pipe(
 	auditTime(50),
-	map((event) => cleanupHtml(event.data.htmlString)),
+	map((data) => cleanupHtml(data.htmlString)),
 	switchMap(formatHTML),
 	map(highlight)
 )
@@ -39,20 +46,26 @@ const diffed$ = highlighted$.pipe(
 
 merge(
 	// we delay the highlighted to first show the diff and then the normal code
-	highlighted$.pipe(delay(850)),
+	highlighted$.pipe(delay(850), skip(1)),
+	// but the first render should be instant
+	highlighted$.pipe(take(1)),
 	diffed$
-).subscribe(postMessage)
+).subscribe((response) => {
+	self.postMessage(response)
+})
 
 function cleanupHtml(html: string) {
 	return html
 		.replace(longStringsRegex, "◦◦◦") // class="..long string.." => class="◦◦◦"
 		.replace(noContentTagsRegex, "$1/>") // <div></div> => <div/>
+		.replace(scriptTagRegex, "")
 }
 
 function formatHTML(html: string) {
 	return prettier.format(html, {
 		parser: "html",
 		printWidth: 120,
+		plugins: [parserHtml],
 	})
 }
 

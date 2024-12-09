@@ -71,15 +71,15 @@ svg[width="1em"][height="1em"] {
 }
 
 :root {
-	--sh-class: #4c97f8;
-	--sh-identifier: #354150;
-	--sh-sign: #8996a3;
-	--sh-string: #0fa295;
-	--sh-keyword: #f47067;
-	--sh-comment: #a19595;
-	--sh-jsxliterals: #6266d1;
-	--sh-property: #e25a1c;
-	--sh-entity: #e25a1c;
+	--sh-class: theme(colors.red);
+	--sh-identifier: theme(colors.fg);
+	--sh-sign: theme(colors.gray2);
+	--sh-string: theme(colors.green);
+	--sh-keyword: theme(colors.red);
+	--sh-comment: theme(colors.gray1);
+	--sh-jsxliterals: theme(colors.purple);
+	--sh-property: theme(colors.orange);
+	--sh-entity: theme(colors.orange);
 }
 
 .prose .anchor {
@@ -97,7 +97,7 @@ svg[width="1em"][height="1em"] {
 }
 
 .prose a {
-	@apply underline transition-all decoration-gray1 dark:decoration-gray2 underline-offset-2 decoration-[0.1em];
+	@apply underline   decoration-gray2 underline-offset-2 decoration-[0.1em];
 }
 
 .prose .anchor:after {
@@ -137,11 +137,11 @@ svg[width="1em"][height="1em"] {
 }
 
 .prose h1 {
-	@apply font-bold text-red  mt-6 mb-2;
+	@apply font-bold text-red text-lg  mt-6 mb-2;
 }
 
 .prose h2 {
-	@apply font-medium text-orange  mt-6 mb-2;
+	@apply font-medium text-orange text-lg  mt-6 mb-2;
 }
 
 .prose h3 {
