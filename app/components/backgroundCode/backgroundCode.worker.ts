@@ -6,6 +6,8 @@ import parserHtml from "prettier/plugins/html"
 import type { BackgroundCodeArgument } from "./types"
 import {
 	auditTime,
+	debounce,
+	debounceTime,
 	delay,
 	map,
 	merge,
@@ -46,9 +48,7 @@ const diffed$ = highlighted$.pipe(
 
 merge(
 	// we delay the highlighted to first show the diff and then the normal code
-	highlighted$.pipe(delay(850), skip(1)),
-	// but the first render should be instant
-	highlighted$.pipe(take(1)),
+	highlighted$.pipe(debounceTime(820)),
 	diffed$
 ).subscribe((response) => {
 	self.postMessage(response)
