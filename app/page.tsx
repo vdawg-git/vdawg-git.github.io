@@ -11,12 +11,17 @@ export default function Page() {
 						Christofer Koeth <span className="text-gray0 italic">VDawg </span>{" "}
 						<span className="text-gray0">(⁀ᗢ⁀)</span>
 					</h1>
-					<GlitchText as={"h2"} className="text-lg">
+					<GlitchText as={"h2"} className="text-lg text-yellow leading-tight">
 						{`Front-End Developer,\nWebdesigner`}
 					</GlitchText>
 				</hgroup>
 
-				<Button className="flex " as="a" href="mailto:imchris@tuta.io">
+				<Button
+					className="flex"
+					color="yellow"
+					as="a"
+					href="mailto:imchris@tuta.io"
+				>
 					Say hi
 				</Button>
 			</div>

@@ -12,7 +12,7 @@ export function Projects() {
 	const projects = getProjects()
 
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 ">
+		<div className="grid grid-cols-1  relative md:grid-cols-2 ">
 			{projects
 				.sort((a, b) => {
 					if (Number(a.metadata.sort) > Number(b.metadata.sort)) {
@@ -21,6 +21,8 @@ export function Projects() {
 					return 1
 				})
 				.map((data, index) => smallItem(data, index))}
+
+			<div className="absolute left-0 z-20 -top-24 bg-radial mix-blend-color-dodge from-fg to-transparent to-80% w-320 h-full   pointer-events-none" />
 		</div>
 	)
 }
@@ -29,7 +31,7 @@ function smallItem({ metadata, slug }: MarkdownData, index: number) {
 	return (
 		<div
 			className={clsx(
-				"w-full flex group   outline-gray0 flex-col [outline-style:groove]  [outline-width:8px] -outline-offset-4   gap-2 items-start  space-x-0 md:space-x-2"
+				"w-full flex group   outline-bg4 flex-col [outline-style:groove]  [outline-width:8px] -outline-offset-4   gap-2 items-start  space-x-0 md:space-x-2"
 			)}
 			style={{ zIndex: index }}
 			key={slug}
@@ -56,7 +58,7 @@ function smallItem({ metadata, slug }: MarkdownData, index: number) {
 				<div>
 					<Link
 						href={`/projects/${slug}`}
-						className="text-neutral-900 hover:underline group-hover:text-[var(--c)] text-lg dark:text-neutral-100 tracking-tight"
+						className="text-neutral-900 hover:underline text-[var(--c)] text-lg dark:text-neutral-100 tracking-tight"
 						style={
 							{ "--c": `var(--color-${metadata.color})` } as React.CSSProperties
 						}

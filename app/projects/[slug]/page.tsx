@@ -5,6 +5,7 @@ import { baseUrl } from "app/sitemap"
 import { formatDate } from "app/lib/helper"
 import { getProjects } from "../utils"
 import type { CSSProperties } from "react"
+import { GlitchText } from "app/components/glitchText"
 
 type Parameter = {
 	slug: string
@@ -80,8 +81,6 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 						"@context": "https://schema.org",
 						"@type": "BlogPosting",
 						headline: metadata.title,
-						datePublished: metadata.publishedAt,
-						dateModified: metadata.publishedAt,
 						description: metadata.summary,
 						image: metadata.image
 							? `${baseUrl}${metadata.image}`
@@ -95,10 +94,24 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 				}}
 			/>
 
-			<div
-				className="bg-[var(--c,--color-bg1)] items-center grid grid-rows-1 grid-cols-3 h-[400px] aspect-video relative"
-				style={{ "--c": `var(--color-${metadata.color})` } as CSSProperties}
-			>
+			<div className="flex items-end mt-4 lg:mt-12 md:gap-8 gap-4 justify-between">
+				<div className="">
+					<GlitchText
+						as="h1"
+						className="title font-semibold text-xl tracking-tighter"
+						style={{ color: `var(--color-${metadata.color})` }}
+					>
+						{metadata.title}
+					</GlitchText>
+					<GlitchText
+						as="p"
+						startDelay={200}
+						className="text-sm text-neutral-600 dark:text-neutral-400"
+					>
+						{metadata.summary}
+					</GlitchText>
+				</div>
+
 				{metadata.image && (
 					<Image
 						src={metadata.image}
@@ -106,32 +119,17 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 						width={200}
 						height={200}
 						priority
-						className="col-end-3 col-start-2 z-20"
-					/>
-				)}
-				{metadata.banner && (
-					<Image
-						src={metadata.banner}
-						alt={`${metadata.title} banner`}
-						width={(400 / 9) * 16}
-						height={400}
-						priority
-						className="col-span-full "
+						className="border-8 border-double border-bg2  grow-0 shrink-0 w-[200px] aspect-square object-cover"
 					/>
 				)}
 			</div>
-			<h1
+			{/* <h1
 				className="title font-semibold text-2xl tracking-tighter"
 				style={{ color: `var(--color-${metadata.color})` }}
 			>
 				{metadata.title}
-			</h1>
-			<div className="flex justify-between items-center mt-2 mb-8 text-sm">
-				<p className="text-sm text-neutral-600 dark:text-neutral-400">
-					{metadata.summary}
-				</p>
-			</div>
-			<article className="prose">
+			</h1> */}
+			<article className="prose mt-6 md:mt-12">
 				<CustomMDX source={content} />
 			</article>
 		</section>

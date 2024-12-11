@@ -6,12 +6,15 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"@fontsource/courier-prime": "^5.1.0",
+		"@egoist/tailwindcss-icons": "^1.8.1",
+		"@iconify-json/pixelarticons": "^1.2.1",
+		"@iconify-json/skill-icons": "^1.2.0",
 		"@tailwindcss/postcss": "4.0.0-beta.6",
 		"@types/diff": "^6.0.0",
 		"@types/node": "20.11.17",
 		"@types/react": "19.0.1",
 		"@types/react-dom": "19.0.1",
+		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"diff": "^7.0.0",
 		"next": "15.0.4",
@@ -31,6 +34,5 @@
 			"@types/react": "19.0.1",
 			"@types/react-dom": "19.0.1"
 		}
-	},
-	"devDependencies": {}
+	}
 }

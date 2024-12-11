@@ -44,10 +44,6 @@ function CustomLink(props: JSX.IntrinsicElements["a"]) {
 	return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props: ImageProps) {
-	return <Image className="rounded-lg" {...props} alt={props.alt} />
-}
-
 function Code({ children, ...props }) {
 	const codeHTML = highlight(children)
 	return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
@@ -93,7 +89,6 @@ const components = {
 	h4: createHeading(4),
 	h5: createHeading(5),
 	h6: createHeading(6),
-	Image: RoundedImage,
 	a: CustomLink,
 	code: Code,
 	Table,

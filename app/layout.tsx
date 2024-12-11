@@ -3,8 +3,6 @@ import type { Metadata } from "next"
 import { Navbar } from "./components/nav"
 import Footer from "./components/footer"
 import { baseUrl } from "./sitemap"
-import "@fontsource/courier-prime/400.css"
-import "@fontsource/courier-prime/700.css"
 import { BackgroundCode } from "./components/backgroundCode"
 
 export const metadata: Metadata = {
@@ -41,11 +39,11 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang="en">
-			<body className="antialiased relative min-h-screen  bg-bg0">
-				<main className="min-h-0 h-full min-w-0  z-20  flex flex-col px-4 ">
+		<html lang="en" className="min-h-screen">
+			<body className="antialiased relative overflow-x-hidden min-h-screen  bg-bg0">
+				<main className="min-h-screen  min-w-0  z-20  flex flex-col px-4 ">
 					<Navbar />
-					<div className="grow">{children}</div>
+					<div className="grow h-full">{children}</div>
 					<Footer />
 				</main>
 
@@ -54,7 +52,11 @@ export default function RootLayout({
 					style={{ backgroundImage: "url('/grain.webp')" }}
 				/>
 
-				<div className="fixed inset-x-0 z-20 bottom-0 bg-radial-[100%_80%_at_60%_90%] mix-blend-color-dodge from-fg/80 size-full   pointer-events-none" />
+				{/* Leaking light */}
+				<div className="absolute inset-x-0 z-20 bottom-0 bg-radial-[100%_400px_at_60%_5%] mix-blend-color-dodge from-fg0 size-full   pointer-events-none" />
+
+				{/* Scanlines  */}
+				<div className="scanlines" />
 
 				{/* background Gradient Top */}
 				<div className="fixed inset-x-0 top-0 -z-10 h-48 bg-gradient-to-b from-bg0 to-transparent  " />
@@ -66,7 +68,8 @@ export default function RootLayout({
 
 				<BackgroundCode />
 
-				<svg>
+				{/* pixel filter  */}
+				<svg className="size-0">
 					<filter id="pixelate" x="0" y="0">
 						<feFlood x="2" y="2" height="1" width="1" />
 						<feComposite width="5" height="5" />

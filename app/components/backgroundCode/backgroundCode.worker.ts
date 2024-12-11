@@ -6,6 +6,7 @@ import parserHtml from "prettier/plugins/html"
 import type { BackgroundCodeArgument } from "./types"
 import {
 	auditTime,
+	combineLatest,
 	debounce,
 	debounceTime,
 	delay,
@@ -13,6 +14,7 @@ import {
 	merge,
 	pairwise,
 	skip,
+	startWith,
 	Subject,
 	switchMap,
 	take,
@@ -39,20 +41,23 @@ const highlighted$ = message$.pipe(
 	map(highlight)
 )
 
-const diffed$ = highlighted$.pipe(
-	pairwise(),
-	map(([previous, current]) =>
-		diffLines(previous, current).map(diffPartToHTML).join("")
-	)
-)
+combineLatest([
+	highlighted$.pipe(auditTime(200), startWith(undefined)),
+	highlighted$,
+])
+	.pipe(
+		// Show diffs with the non-updated previous state for 200ms
+		map(([debounced, current]) => {
+			if (debounced === undefined || debounced === current) {
+				return current
+			}
 
-merge(
-	// we delay the highlighted to first show the diff and then the normal code
-	highlighted$.pipe(debounceTime(820)),
-	diffed$
-).subscribe((response) => {
-	self.postMessage(response)
-})
+			return diffLines(debounced, current).map(diffPartToHTML).join("")
+		})
+	)
+	.subscribe((response) => {
+		self.postMessage(response)
+	})
 
 function cleanupHtml(html: string) {
 	return html

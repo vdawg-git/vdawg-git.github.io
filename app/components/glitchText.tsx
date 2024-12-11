@@ -1,16 +1,33 @@
 "use client"
 
+import { observeIntersection } from "app/lib/observables"
 import type React from "react"
-import { use, useEffect, useState } from "react"
-import { delayWhen, interval, map, merge, of, take, takeUntil } from "rxjs"
+import { use, useEffect, useRef, useState } from "react"
+import {
+	delay,
+	delayWhen,
+	filter,
+	interval,
+	map,
+	merge,
+	of,
+	switchMap,
+	take,
+	takeUntil,
+} from "rxjs"
 
 const chars =
-	"abcdefghijklmnopqrstuvwxyz123456789 ぁあざじすせそぞたどにねのほまみめもゃやゆよらりるゐをんゔゕゖサザシジゼソタチッ"
+	"abcdefghijklmnopqrstuvwxyz123456789 ЖҏфΞδΘ@&:;…!¡?¿·•*⁊‧#/♠♣♥◊♦↵↗╦↕ЏΩ⌘{}[]/«»‹›"
 		.split("")
 		.flatMap((char) => {
 			const uppercase = char.toUpperCase()
 			return char === uppercase ? char : [char, char.toUpperCase()]
 		})
+
+/** How many times to repeat the glitch effect for each character */
+const subIterations = 3
+const glitchedForward = 6
+const defaultSpeed = 30
 
 export function GlitchText(props: {
 	children: string
@@ -18,32 +35,70 @@ export function GlitchText(props: {
 		any,
 		"a" | "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 	>
-	className: string
+	className?: string
 	speed?: number
+	startDelay?: number
+	style?: React.CSSProperties
 }) {
-	const { children: text, className, speed = 35 } = props
+	const { children: text, className, style, speed = defaultSpeed } = props
 	const Tag = props.as
 
-	const initialText = text.replaceAll(/[^\s]/g, " ")
+	const initialText = toEmptyPlaceholder(text)
 	const [toRender, setToRenderText] = useState(initialText)
+	const totalIterations = text.length * subIterations + 1
+	const element = useRef<HTMLElement>(null)
 
 	useEffect(() => {
-		const toRender$ = merge(
-			of(0),
-			interval(speed * 0.8).pipe(
-				map((i) => i + 1),
-				delayWhen(() => interval(speed * Math.random()))
+		if (!element.current) {
+			console.warn("No element found ghoghg")
+			return
+		}
+
+		const start$ = observeIntersection(element.current, {
+			threshold: 0.25,
+			rootMargin: "0px -200px 0px -200px",
+		}).pipe(
+			filter((entries) => entries.some((entry) => entry.isIntersecting)),
+			delay(props.startDelay ?? 0),
+			take(1)
+		)
+
+		const toRender$ = start$.pipe(
+			switchMap(() =>
+				merge(
+					of(0),
+					// reduce the speed a bit and add some random delay
+					interval((speed * 0.8) / subIterations).pipe(
+						map((i) => i + 1),
+						delayWhen(() => interval(speed * Math.random()))
+					)
+				).pipe(
+					take(totalIterations),
+					map((index) => index / subIterations),
+					map((iteration) => {
+						if (iteration >= text.length) {
+							return text
+						}
+						const index = Math.ceil(iteration)
+
+						const typed = text.slice(0, index)
+
+						const glitched = text
+							.slice(index, index + glitchedForward + 1)
+							.split("")
+							.map((char, charIndex) =>
+								char.match(/\s/) ? char : charIndex === 0 ? "|" : randomChar()
+							)
+							.join("")
+
+						const emptyPlaceholder = toEmptyPlaceholder(
+							text.slice(index + 1 + glitchedForward)
+						)
+
+						return typed + glitched + emptyPlaceholder
+					})
+				)
 			)
-		).pipe(
-			take(text.length + 1),
-			map((index) => {
-				const typed = text.slice(0, index + 1)
-				const toType =
-					index >= text.length - 1
-						? ""
-						: "|" + text.slice(index + 1).replaceAll(/[^\s]/g, " ")
-				return typed + toType
-			})
 		)
 
 		const subscription = toRender$.subscribe((toRenderText) => {
@@ -56,8 +111,20 @@ export function GlitchText(props: {
 	}, [])
 
 	return (
-		<Tag className={className} aria-label={text}>
-			<pre aria-hidden>{toRender}</pre>
+		<Tag className={className} aria-label={text} style={style} ref={element}>
+			{toRender}
 		</Tag>
 	)
+}
+
+function toEmptyPlaceholder(text: string) {
+	return text.replaceAll(/[^\s]/g, " ")
+}
+
+function randBool(probability: number) {
+	return Math.random() < probability
+}
+
+function randomChar() {
+	return chars[Math.floor(Math.random() * chars.length)]
 }
