@@ -1,8 +1,9 @@
 "use client"
 
+import { cn } from "app/lib/helper"
 import { observeIntersection } from "app/lib/observables"
 import type React from "react"
-import { use, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
 	delay,
 	delayWhen,
@@ -26,7 +27,7 @@ const chars =
 
 /** How many times to repeat the glitch effect for each character */
 const subIterations = 3
-const glitchedForward = 6
+const glitchedForward = 4
 const defaultSpeed = 30
 
 export function GlitchText(props: {
@@ -55,7 +56,7 @@ export function GlitchText(props: {
 		}
 
 		const start$ = observeIntersection(element.current, {
-			threshold: 0.25,
+			threshold: 0.05,
 			rootMargin: "0px -200px 0px -200px",
 		}).pipe(
 			filter((entries) => entries.some((entry) => entry.isIntersecting)),
@@ -111,18 +112,20 @@ export function GlitchText(props: {
 	}, [])
 
 	return (
-		<Tag className={className} aria-label={text} style={style} ref={element}>
+		<Tag
+			className={cn("whitespace-pre-line", className)}
+			aria-label={text}
+			style={style}
+			ref={element}
+		>
 			{toRender}
 		</Tag>
 	)
 }
 
 function toEmptyPlaceholder(text: string) {
+	// @ts-ignore
 	return text.replaceAll(/[^\s]/g, " ")
-}
-
-function randBool(probability: number) {
-	return Math.random() < probability
 }
 
 function randomChar() {
