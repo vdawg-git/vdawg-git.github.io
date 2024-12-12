@@ -5,6 +5,7 @@ import { baseUrl } from "app/sitemap"
 import { getProjects } from "../utils"
 import { GlitchText } from "app/components/glitchText"
 import { Button } from "app/components/button"
+import { TechStack } from "app/components/techStack"
 
 type Parameter = {
 	slug: string
@@ -71,7 +72,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 	const { metadata, slug, content } = project
 
 	return (
-		<section className="max-w-2xl mx-auto px-6 ">
+		<section className="max-w-2xl mx-auto  ">
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -93,11 +94,11 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 				}}
 			/>
 
-			<div className="flex  flex-col-reverse md:flex-row  items-start   justify-start mt-4 lg:mt-12 md:gap-8 gap-4 md:justify-between">
+			<div className="flex  flex-col-reverse md:flex-row  items-start   justify-start sm:items-end mt-4 lg:mt-12 md:gap-8 gap-4 md:justify-between">
 				<div className="">
 					<GlitchText
 						as="h1"
-						className="title font-semibold text-xl tracking-tighter"
+						className="title font-semibold sm:text-xl text-lg tracking-tighter"
 						style={{ color: `var(--color-${metadata.color})` }}
 					>
 						{metadata.title}
@@ -128,6 +129,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 					source={content}
 					components={{
 						a: (text) => <Button as="a" {...text} color="yellow" />,
+						TechStack,
 					}}
 				/>
 			</article>

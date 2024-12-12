@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import "./projects.css"
 
 import { getProjects } from "app/projects/utils"
 import clsx from "clsx"
@@ -7,22 +8,25 @@ import type { MarkdownData } from "app/lib/markdown"
 import type React from "react"
 import type { CSSProperties } from "react"
 import { Button } from "./button"
+import { cn } from "app/lib/helper"
 
 export function Projects() {
 	const projects = getProjects()
 
 	return (
-		<div className="grid grid-cols-1  relative md:grid-cols-2 ">
-			{projects
-				.sort((a, b) => {
-					if (Number(a.metadata.sort) > Number(b.metadata.sort)) {
-						return -1
-					}
-					return 1
-				})
-				.map((data, index) => smallItem(data, index))}
+		<div className="relative">
+			<div className="sm:grid flex flex-col  grid-cols-1   sm:grid-cols-2 lg:grid-cols-6 projects">
+				{projects
+					.sort((a, b) => {
+						if (Number(a.metadata.sort) > Number(b.metadata.sort)) {
+							return -1
+						}
+						return 1
+					})
+					.map((data, index) => smallItem(data, index))}
+			</div>
 
-			<div className="absolute left-0 z-20 -top-24 bg-radial mix-blend-color-dodge from-fg to-transparent to-80% w-320 h-full   pointer-events-none" />
+			<div className="absolute contain-[layout_size_style]  -right-1/2 z-10 bottom-24 bg-radial mix-blend-color-dodge from-fg/50 to-transparent to-60% w-[150%] h-full   pointer-events-none" />
 		</div>
 	)
 }
@@ -30,8 +34,10 @@ export function Projects() {
 function smallItem({ metadata, slug }: MarkdownData, index: number) {
 	return (
 		<div
-			className={clsx(
-				"w-full flex group   outline-bg4 flex-col [outline-style:groove]  [outline-width:8px] -outline-offset-4   gap-2 items-start  space-x-0 md:space-x-2"
+			className={cn(
+				"flex group   outline-dimYellow flex-col [outline-style:double] leading-[1.1]   [outline-width:4px] -outline-offset-2   gap-2 items-start  ",
+				"col-span-2"
+				// (index === 0 || index === 1) && "col-span-3"
 			)}
 			style={{ zIndex: index }}
 			key={slug}
@@ -39,38 +45,40 @@ function smallItem({ metadata, slug }: MarkdownData, index: number) {
 			{metadata.image && (
 				<Link
 					key={slug}
-					className="shrink-0 grow-0   flex items-center justify-center   space-y-1 self-center "
+					className="shrink-0 grow-0   flex items-center justify-center   space-y-1 sm:self-center "
 					href={`/projects/${slug}`}
 				>
 					<Image
 						src={metadata.image}
 						alt={metadata.title}
-						width={240}
-						height={240}
+						width={144}
+						height={144}
 						style={{} as CSSProperties}
-						className={`sepia-40 brightness-75 group-hover:brightness-100
-							 [--tw-hue-rotate:url(#pixelate)] 
-							 p-2 max-h-[240px]   group-hover:hue-rotate-0     object-cover min-h-[240px]   group-hover:sepia-0 `}
+						className={clsx(
+							`img-filter     p-2 max-h-[144px]        object-cover min-h-[144px]    `,
+							!metadata.pixelate && "md:[--pixelate:url(#pixelate)]"
+						)}
 					/>
 				</Link>
 			)}
-			<div className="flex flex-col justify-between grow items-start p-6">
+			<div className="flex flex-col justify-between grow items-start p-2 sm:p-[1ch]">
 				<div>
 					<Link
 						href={`/projects/${slug}`}
-						className="text-neutral-900 hover:underline text-[var(--c)] text-lg dark:text-neutral-100 tracking-tight"
+						className="hover:underline text-base  text-fg        tracking-tight"
 						style={
 							{ "--c": `var(--color-${metadata.color})` } as React.CSSProperties
 						}
 					>
 						{metadata.title}
 					</Link>
-					<p className="text-gray1">{metadata.summary}</p>
+					<p className="text-dimYellow">{metadata.summary}</p>
 				</div>
 
 				<Button
 					className="justify-self-end mt-4"
 					as="a"
+					color="yellow"
 					href={`/projects/${slug}`}
 				>
 					Check out

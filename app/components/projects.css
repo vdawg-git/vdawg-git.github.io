@@ -1,5 +1,5 @@
 .projects {
-	filter: drop-shadow(0px 0px 4px color-mix(in srgb, red, transparent 70%));
+	filter: drop-shadow(0px 0px 4px color-mix(in srgb, #ff7f5c, transparent 40%));
 
 	text-shadow: none;
 	color: var(--color-dimYellow);

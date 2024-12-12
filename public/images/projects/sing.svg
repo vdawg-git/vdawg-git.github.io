@@ -46,7 +46,7 @@
         :root {
           --orangeDark: #ff3c00;
           --orangeLight: #ffa12d;
-          --duration: 8s
+          --duration: 6s
         }
 
         circlebottom {
