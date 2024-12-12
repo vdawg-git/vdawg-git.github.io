@@ -7,17 +7,12 @@ import type { BackgroundCodeArgument } from "./types"
 import {
 	auditTime,
 	combineLatest,
-	debounce,
-	debounceTime,
 	delay,
 	map,
-	merge,
-	pairwise,
-	skip,
+	of,
 	startWith,
 	Subject,
 	switchMap,
-	take,
 } from "rxjs"
 
 const colors = {
@@ -30,7 +25,6 @@ const scriptTagRegex = /<script.*>.*<\/script>/gm
 
 const message$ = new Subject<BackgroundCodeArgument>()
 self.onmessage = (event: MessageEvent<BackgroundCodeArgument>) => {
-	console.log(event.data)
 	message$.next(event.data)
 }
 
@@ -42,17 +36,17 @@ const highlighted$ = message$.pipe(
 )
 
 combineLatest([
-	highlighted$.pipe(auditTime(200), startWith(undefined)),
+	highlighted$.pipe(auditTime(500), startWith(undefined)),
 	highlighted$,
 ])
 	.pipe(
 		// Show diffs with the non-updated previous state for 200ms
-		map(([debounced, current]) => {
+		switchMap(([debounced, current], index) => {
 			if (debounced === undefined || debounced === current) {
-				return current
+				return of(current).pipe(delay(index === 0 ? 0 : 200))
 			}
 
-			return diffLines(debounced, current).map(diffPartToHTML).join("")
+			return of(diffLines(debounced, current).map(diffPartToHTML).join(""))
 		})
 	)
 	.subscribe((response) => {
