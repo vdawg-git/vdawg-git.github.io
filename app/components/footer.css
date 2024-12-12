@@ -1,0 +1,25 @@
+.gridd {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	filter: drop-shadow(
+		0 0 5px color-mix(in srgb, var(--color-red), transparent 75%)
+	);
+	text-shadow: none;
+
+	li {
+		outline: 4px var(--color-bg4) double;
+		outline-offset: -2px;
+		padding: 4px 12px;
+	}
+
+	a {
+		display: flex;
+		gap: 12px;
+
+		&:hover {
+			text-decoration: underline;
+			color: var(--color-orange);
+		}
+	}
+}

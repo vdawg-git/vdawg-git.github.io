@@ -1,36 +1,51 @@
-import { IconExternalLink, IconGithub } from "./icons/icons"
+import { InstagramIcon } from "./icons/instagram"
+import "./footer.css"
 
 export default function Footer() {
 	return (
-		<footer className="[&_a]:hover:text-orange grow-0 [&_a]:hover:underline">
-			<div className="max-w-2xl mx-auto mt-8 p-8 border-bg4 border-t-8 border-double">
-				<ul className="font-sm    flex flex-col space-x-0 space-y-2  md:flex-row md:space-x-4 md:space-y-0 text-fg0">
-					<li>
-						<a
-							className="flex  items-center gap-1   hover:text-neutral-100"
-							rel="noopener noreferrer"
-							target="_blank"
-							href="https://github.com/vdawg-git"
-						>
-							<IconGithub />
-							<p className="">Github</p>
-						</a>
-					</li>
-					<li>
-						<a
-							className="flex items-center gap-1   hover:text-neutral-100"
-							rel="noopener noreferrer"
-							target="_blank"
-							href="https://github.com/vdawg-git/portfolio2"
-						>
-							<IconExternalLink />
-							<p className="">view source</p>
-						</a>
-					</li>
-				</ul>
+		<>
+			<footer className=" max-w-3xl relative w-full text-bg4 mt-24  mx-auto grow-0 ">
+				<div className="gridd ">
+					<ul className="font-sm    flex flex-col  md:flex-row  ">
+						<li>
+							<a
+								rel="noopener noreferrer"
+								target="_blank"
+								href="https://github.com/vdawg-git"
+							>
+								<div className="i-pixelarticons-github size-6"></div>
+								<p className="">Github</p>
+							</a>
+						</li>
 
-				<div className="i-pixelarticons-ab-testing size-80 bg-red/5"></div>
-			</div>
-		</footer>
+						<li>
+							<a
+								rel="noopener noreferrer"
+								target="_blank"
+								href="https://github.com/vdawg-git/portfolio2"
+							>
+								<InstagramIcon className="size-6" />
+								<p className="">Instagram</p>
+							</a>
+						</li>
+					</ul>
+
+					<ul className=" col-start-2   -col-end-1 max-sm:row-start-1 max-sm:row-end-2 h-full">
+						<li className="flex  justify-end h-full items-center">
+							<a
+								rel="noopener noreferrer"
+								target="_blank"
+								href="https://github.com/vdawg-git/portfolio2"
+							>
+								<div className="i-pixelarticons-external-link size-6" />
+								<p className="">view source</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+			<div className="bg-radial-[150%_100%_at_50%_100%] absolute bottom-0 inset-x-0 mix-blend-color-dodge from-fg0 to-transparent to-70% h-120 w-full z-50 contain-[layout_paint_size_strict]    pointer-events-none"></div>
+		</>
 	)
 }
