@@ -95,7 +95,7 @@ type Props = {
 
 export function TechStack({ techs }: Props) {
 	return (
-		<div className="flex flex-wrap gap-4">
+		<div className="flex flex-wrap gap-2 justify-start">
 			{techs.map((key) => {
 				const data = techstacks[key.toLowerCase()]
 				if (!data) {
@@ -105,7 +105,7 @@ export function TechStack({ techs }: Props) {
 
 				return (
 					<div key={key} className="size-8" title={name}>
-						<Icon width={32} height={32} className="size-8" />
+						<Icon className="size-8" />
 					</div>
 				)
 			})}

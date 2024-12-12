@@ -2,13 +2,7 @@ import React, { SVGProps } from "react"
 
 export function SkillIconsPhotoshop(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="1em"
-			height="1em"
-			viewBox="0 0 256 256"
-			{...props}
-		>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
 			<g fill="none">
 				<rect width="256" height="256" fill="#001E36"></rect>
 				<path

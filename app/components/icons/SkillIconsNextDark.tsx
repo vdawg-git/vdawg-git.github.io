@@ -2,13 +2,7 @@ import type { SVGProps } from "react"
 
 export function SkillIconsNextjsDark(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="1em"
-			height="1em"
-			viewBox="0 0 256 256"
-			{...props}
-		>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
 			<g fill="none">
 				<rect width="256" height="256" fill="var(--color-bg2)"></rect>
 				<path
