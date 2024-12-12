@@ -1,5 +1,6 @@
-import Image from "next/image"
 import Link from "next/link"
+import { Logo } from "./icons/logo-icon.tsx"
+import "./nav.css"
 
 const navItems = {
 	// "/": {
@@ -15,7 +16,7 @@ const navItems = {
 
 export function Navbar() {
 	return (
-		<aside className="mb-4 grow-0 flex text-[0.7rem] z-50 justify-center">
+		<aside className="mb-4 grow-0 flex text-[0.65rem] z-50 text-dimYellow justify-center nav">
 			<nav
 				className="flex flex-row justify-center  max-w-max  relative px-4 pb-0 items-center "
 				id="nav"
@@ -25,7 +26,7 @@ export function Navbar() {
 					className="flex gap-3 hover:text-yellow  uppercase items-center"
 				>
 					VDawg
-					<Image src={"/logo.svg"} alt="logo" width={48} height={48} />
+					<Logo width={48} height={48} className="size-12" />
 				</Link>
 				<div className="flex flex-row space-x-0  items-center">
 					{Object.entries(navItems).map(([path, { ToRender }]) => {
