@@ -9,6 +9,7 @@ type Metadata = {
 	sort?: number
 	color?: string
 	banner?: string
+	pixelate?: boolean
 }
 
 export type MarkdownData = {

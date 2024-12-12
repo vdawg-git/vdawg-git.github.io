@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image, { ImageProps } from "next/image"
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc"
 import { highlight } from "sugar-high"
 import React, { type JSX } from "react"

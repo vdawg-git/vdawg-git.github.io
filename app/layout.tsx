@@ -53,7 +53,7 @@ export default function RootLayout({
 				/>
 
 				{/* Leaking light */}
-				<div className="absolute inset-x-0 z-20 bottom-0 bg-radial-[100%_400px_at_60%_5%] mix-blend-color-dodge from-fg0 size-full   pointer-events-none" />
+				<div className="absolute inset-x-0 z-50 bottom-0 bg-radial-[100%_400px_at_60%_5%] mix-blend-color-dodge from-fg0 size-full   pointer-events-none" />
 
 				{/* Scanlines  */}
 				<div className="scanlines" />

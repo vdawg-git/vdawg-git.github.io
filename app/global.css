@@ -104,9 +104,9 @@ svg[width="1em"][height="1em"] {
 	@apply visible;
 }
 
-.prose a {
+/* .prose a {
 	@apply underline   decoration-gray2 underline-offset-2 decoration-[0.1em];
-}
+} */
 
 .prose .anchor:after {
 	@apply text-current;
@@ -217,4 +217,11 @@ table {
 		color-mix(in srgb, black 90%, theme(colors.dimOrange)) 6px,
 		theme(colors.bg0) 7px
 	);
+}
+
+.shadow-flat {
+	--tw-shadow: 0 0px 6px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)),
+		0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+	box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+		var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
