@@ -4,8 +4,8 @@ import "./footer.css"
 export default function Footer() {
 	return (
 		<>
-			<footer className=" max-w-3xl relative w-full text-bg4 mt-24  mx-auto grow-0 ">
-				<div className="gridd ">
+			<footer className=" max-w-3xl relative w-full text-bg4 mb-6 mt-24  mx-auto grow-0 ">
+				<div className="max-sm:flex-col  gridd ">
 					<ul className="font-sm    flex flex-col  md:flex-row  ">
 						<li>
 							<a
@@ -31,7 +31,7 @@ export default function Footer() {
 					</ul>
 
 					<ul className=" col-start-2   -col-end-1 max-sm:row-start-1 max-sm:row-end-2 h-full">
-						<li className="flex  justify-end h-full items-center">
+						<li className="flex justify-start  sm:justify-end h-full items-center">
 							<a
 								rel="noopener noreferrer"
 								target="_blank"
