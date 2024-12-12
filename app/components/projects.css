@@ -1,0 +1,14 @@
+.projects {
+	filter: drop-shadow(0px 0px 4px color-mix(in srgb, red, transparent 70%));
+
+	text-shadow: none;
+	color: var(--color-dimYellow);
+
+	.img-filter {
+		filter: saturate(2.5) sepia(0.6) var(--pixelate);
+
+		.group:hover & {
+			filter: none;
+		}
+	}
+}
