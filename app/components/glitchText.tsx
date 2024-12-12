@@ -56,7 +56,6 @@ export function GlitchText(props: {
 		}
 
 		const start$ = observeIntersection(element.current, {
-			threshold: 0.05,
 			rootMargin: "0px -200px 0px -200px",
 		}).pipe(
 			filter((entries) => entries.some((entry) => entry.isIntersecting)),
