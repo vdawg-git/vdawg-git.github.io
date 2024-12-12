@@ -2,10 +2,9 @@ import { notFound } from "next/navigation"
 import { CustomMDX } from "app/components/mdx"
 import Image from "next/image"
 import { baseUrl } from "app/sitemap"
-import { formatDate } from "app/lib/helper"
 import { getProjects } from "../utils"
-import type { CSSProperties } from "react"
 import { GlitchText } from "app/components/glitchText"
+import { Button } from "app/components/button"
 
 type Parameter = {
 	slug: string
@@ -72,7 +71,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 	const { metadata, slug, content } = project
 
 	return (
-		<section className="max-w-2xl mx-auto">
+		<section className="max-w-2xl mx-auto px-6 ">
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -94,7 +93,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 				}}
 			/>
 
-			<div className="flex items-end mt-4 lg:mt-12 md:gap-8 gap-4 justify-between">
+			<div className="flex  flex-col-reverse md:flex-row  items-start   justify-start mt-4 lg:mt-12 md:gap-8 gap-4 md:justify-between">
 				<div className="">
 					<GlitchText
 						as="h1"
@@ -119,18 +118,18 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 						width={200}
 						height={200}
 						priority
-						className="border-8 border-double border-bg2  grow-0 shrink-0 w-[200px] aspect-square object-cover"
+						className="border-8 border-double border-bg2  grow-0 shrink-0 sm:w-[200px] w-[160px] aspect-square object-cover"
 					/>
 				)}
 			</div>
-			{/* <h1
-				className="title font-semibold text-2xl tracking-tighter"
-				style={{ color: `var(--color-${metadata.color})` }}
-			>
-				{metadata.title}
-			</h1> */}
+
 			<article className="prose mt-6 md:mt-12">
-				<CustomMDX source={content} />
+				<CustomMDX
+					source={content}
+					components={{
+						a: (text) => <Button as="a" {...text} color="yellow" />,
+					}}
+				/>
 			</article>
 		</section>
 	)

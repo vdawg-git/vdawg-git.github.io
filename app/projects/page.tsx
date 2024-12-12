@@ -1,3 +1,4 @@
+import { GlitchText } from "app/components/glitchText"
 import { Projects } from "app/components/projects"
 
 export const metadata = {
@@ -7,8 +8,13 @@ export const metadata = {
 
 export default function Page() {
 	return (
-		<section className="max-w-5xl mx-auto md:mt-12">
-			<h1 className="font-semibold text-xl mb-8 tracking-tighter">Projects</h1>
+		<section className="max-w-3xl mx-auto md:mt-12">
+			<GlitchText
+				as="h1"
+				className="font-semibold text-lg sm:text-xl mb-8 tracking-tighter"
+			>
+				Projects
+			</GlitchText>
 			<Projects />
 		</section>
 	)
