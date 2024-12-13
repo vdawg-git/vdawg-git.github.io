@@ -1,8 +1,10 @@
+import type { SVGProps } from "react"
+
 export function SkillIconsReactDark(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
 			<g fill="none">
-				<rect width="256" height="256" fill="var(--color-bg2)"></rect>
+				<rect width="256" height="256" fill="var(--color-bg1)"></rect>
 				<path
 					fill="#00D8FF"
 					d="M128.001 146.951c10.304 0 18.656-8.353 18.656-18.656s-8.352-18.656-18.656-18.656s-18.656 8.353-18.656 18.656s8.353 18.656 18.656 18.656"

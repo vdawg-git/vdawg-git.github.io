@@ -10,7 +10,7 @@ export const PrismaLogo: FunctionComponent<SVGProps<SVGSVGElement>> = (
 			xmlns="http://www.w3.org/2000/svg"
 			{...props}
 		>
-			<rect width="24" height="24" fill="var(--color-bg2)"></rect>
+			<rect width="24" height="24" fill="var(--color-bg1)"></rect>
 
 			<g transform="scale(0.8) translate(4.8, 2.8)">
 				<path

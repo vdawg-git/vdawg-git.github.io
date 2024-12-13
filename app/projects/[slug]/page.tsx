@@ -7,12 +7,11 @@ import { GlitchText } from "app/components/glitchText"
 import { Button } from "app/components/button"
 import { TechStack } from "app/components/techStack"
 
-type Parameter = {
+export type Parameter = {
 	slug: string
 }
-type Params = readonly Parameter[]
 
-export async function generateStaticParams(): Promise<Params> {
+export async function generateStaticParams(): Promise<Parameter[]> {
 	const projects = getProjects()
 
 	return projects.map(({ slug }) => ({

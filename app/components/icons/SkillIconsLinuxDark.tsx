@@ -4,7 +4,7 @@ export function SkillIconsLinuxDark(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
 			<g fill="none">
-				<rect width="256" height="256" fill="var(--color-bg2)"></rect>
+				<rect width="256" height="256" fill="var(--color-bg1)"></rect>
 				<path
 					fill="#ECEFF1"
 					d="m85.95 199.926l24.53 13.62h37.096l34.702-26.055l15.556-40.859l-35.899-43.227l-10.171-24.278l-49.66 1.776l.598 13.62l-9.573 17.764l-14.958 29.016l-2.991 24.278z"

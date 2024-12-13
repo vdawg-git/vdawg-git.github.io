@@ -1,5 +1,6 @@
 import { PlaywrightLogo } from "./icons/PlaywrightLogo"
 import { PrismaLogo } from "./icons/PrismaLogo"
+import { SkillIconsAstro } from "./icons/SkillIconsAstro"
 import { SkillIconsElectron } from "./icons/SkillIconsElectron"
 import SkillIconsFigmaDark from "./icons/SkillIconsFigmaDark"
 import SkillIconsLinuxDark from "./icons/SkillIconsLinuxDark"
@@ -8,6 +9,7 @@ import { SkillIconsNodejsDark } from "./icons/SkillIconsNodejs"
 import SkillIconsPhotoshop from "./icons/SkillIconsPhotoshop"
 import { SkillIconsReactDark } from "./icons/SkillIconsReactDark"
 import SkillIconsReactivexDark from "./icons/SkillIconsReactivexDark"
+import { SkillIconsRedux } from "./icons/SkillIconsRedux"
 import SkillIconsRust from "./icons/SkillIconsRust"
 import SkillIconsSvelte from "./icons/SkillIconsSvelte"
 import SkillIconsTailwindcssDark from "./icons/SkillIconsTailwindcssDark"
@@ -23,17 +25,23 @@ type Tech =
 	| "tailwind"
 	| "typescript"
 	| "node"
+	| "astro"
 	| "svelte"
 	| "linux"
 	| "photoshop"
 	| "rxjs"
 	| "electron"
+	| "redux"
 type Data = Record<Tech, { name: string; Icon: React.FC }>
 
 const techstacks: Data = {
 	figma: {
 		name: "Figma",
 		Icon: () => <SkillIconsFigmaDark />,
+	},
+	astro: {
+		name: "Astro",
+		Icon: () => <SkillIconsAstro />,
 	},
 	linux: {
 		name: "Linux",
@@ -87,6 +95,10 @@ const techstacks: Data = {
 		name: "Playwright",
 		Icon: () => <PlaywrightLogo />,
 	},
+	redux: {
+		name: "Redux",
+		Icon: () => <SkillIconsRedux />,
+	},
 }
 
 type Props = {
@@ -95,7 +107,7 @@ type Props = {
 
 export function TechStack({ techs }: Props) {
 	return (
-		<div className="flex flex-wrap gap-2 justify-start">
+		<div className="flex flex-wrap  gap-2 justify-start">
 			{techs.map((key) => {
 				const data = techstacks[key.toLowerCase()]
 				if (!data) {
@@ -104,8 +116,8 @@ export function TechStack({ techs }: Props) {
 				const { Icon, name } = data
 
 				return (
-					<div key={key} className="size-8" title={name}>
-						<Icon className="size-8" />
+					<div key={key} className="size-8 sepia-70 hover:sepia-0" title={name}>
+						<Icon className="size-8 " />
 					</div>
 				)
 			})}

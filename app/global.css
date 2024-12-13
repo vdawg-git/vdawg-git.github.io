@@ -90,6 +90,10 @@ svg[width="1em"][height="1em"] {
 	--sh-entity: theme(colors.orange);
 }
 
+.prose {
+	@apply text-gray2;
+}
+
 .prose .anchor {
 	@apply absolute invisible no-underline;
 
@@ -133,11 +137,13 @@ svg[width="1em"][height="1em"] {
 
 .prose img {
 	/* Don't apply styles to next/image */
-	@apply m-0;
+	@apply m-0 p-1;
+	border: 4px double var(--color-bg);
+	/* box-shadow: 6px 6px 0px var(--color-bg); */
 }
 
 .prose p {
-	@apply my-4  text-gray2 max-w-[80ch];
+	@apply my-4  max-w-[80ch];
 }
 
 .prose h1 {

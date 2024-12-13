@@ -4,7 +4,7 @@ export function SkillIconsTailwindcssDark(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
 			<g fill="none">
-				<rect width="256" height="256" fill="var(--color-bg2)"></rect>
+				<rect width="256" height="256" fill="var(--color-bg1)"></rect>
 				<path
 					fill="url(#skillIconsTailwindcssDark0)"
 					fillRule="evenodd"
