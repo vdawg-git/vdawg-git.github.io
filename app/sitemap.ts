@@ -2,6 +2,7 @@ import { getBlogPosts } from "app/blog/utils"
 import { getProjects } from "./projects/utils"
 
 export const baseUrl = "https://vdawg.me"
+export const dynamic = "force-static"
 
 export default async function sitemap() {
 	// let blogs = getBlogPosts().map((post) => ({
