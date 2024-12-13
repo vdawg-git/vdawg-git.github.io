@@ -10,7 +10,9 @@ export function initialzeCodeBackground() {
 
 	codeWorker.addEventListener("message", setBackgroundCode)
 
-	const observer = new MutationObserver(() => sendHTMLtoWorker(codeWorker))
+	const observer = new MutationObserver(async () =>
+		sendHTMLtoWorker(codeWorker)
+	)
 
 	const element = getAppElement()
 	if (!element) {
@@ -33,7 +35,7 @@ export function initialzeCodeBackground() {
 	}
 }
 
-function sendHTMLtoWorker(worker: Worker) {
+async function sendHTMLtoWorker(worker: Worker) {
 	const message: BackgroundCodeArgument = {
 		htmlString: getAppHTML() ?? "",
 	}
@@ -41,7 +43,7 @@ function sendHTMLtoWorker(worker: Worker) {
 	worker.postMessage(message)
 }
 
-function setBackgroundCode({ data }: MessageEvent<string>) {
+async function setBackgroundCode({ data }: MessageEvent<string>) {
 	const element = getCodeBlock()
 	if (!element) {
 		console.error("Background code element not found")
