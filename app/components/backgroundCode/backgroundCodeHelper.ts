@@ -25,7 +25,7 @@ export function initialzeCodeBackground() {
 
 		return () => observer.disconnect()
 	})
-		.pipe(auditTime(5), map(getAppHTML))
+		.pipe(auditTime(10), map(getAppHTML))
 		.subscribe((html) => {
 			codeWorker.postMessage(html)
 		})

@@ -36,17 +36,19 @@ const highlighted$ = message$.pipe(
 )
 
 combineLatest([
-	highlighted$.pipe(auditTime(900), startWith(undefined)),
+	highlighted$.pipe(auditTime(1100), startWith(undefined)),
 	highlighted$,
 ])
 	.pipe(
 		// Show diffs with the non-updated previous state for 200ms
 		switchMap(([debounced, current], index) => {
 			if (debounced === undefined || debounced === current) {
-				return of(current).pipe(delay(index === 0 ? 0 : 1100))
+				return of(current).pipe(delay(index === 0 ? 0 : 1200))
 			}
 
-			return of(diffLines(debounced, current).map(diffPartToHTML).join(""))
+			return of(
+				diffLines(debounced, current).map(diffPartToHTML).join("")
+			).pipe(delay(30))
 		}),
 		distinctUntilChanged()
 	)
