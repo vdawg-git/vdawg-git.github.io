@@ -14,7 +14,6 @@ import {
 	of,
 	switchMap,
 	take,
-	takeUntil,
 } from "rxjs"
 
 const chars =
@@ -26,9 +25,9 @@ const chars =
 		})
 
 /** How many times to repeat the glitch effect for each character */
-const subIterations = 3
-const glitchedForward = 4
-const defaultSpeed = 30
+const subIterations = 2
+const glitchedForward = 2
+const defaultSpeed = 35
 
 export function GlitchText(props: {
 	children: string
@@ -112,7 +111,7 @@ export function GlitchText(props: {
 
 	return (
 		<Tag
-			className={cn("whitespace-pre-line", className)}
+			className={cn("whitespace-pre-line contain-[style_paint]", className)}
 			aria-label={text}
 			style={style}
 			ref={element}
