@@ -40,6 +40,8 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" className="min-h-screen">
+			<link rel="icon" href="/logo.svg" sizes="any" />
+
 			<body className="antialiased relative overflow-x-hidden min-h-screen  bg-bg0">
 				<main className="min-h-screen  min-w-0  z-20  flex flex-col px-4 ">
 					<Navbar />
