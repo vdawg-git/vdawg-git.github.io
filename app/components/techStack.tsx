@@ -1,6 +1,7 @@
 import { PlaywrightLogo } from "./icons/PlaywrightLogo"
 import { PrismaLogo } from "./icons/PrismaLogo"
 import { SkillIconsAstro } from "./icons/SkillIconsAstro"
+import { SkillIconsBlenderDark } from "./icons/SkillIconsBlender"
 import { SkillIconsElectron } from "./icons/SkillIconsElectron"
 import SkillIconsFigmaDark from "./icons/SkillIconsFigmaDark"
 import SkillIconsLinuxDark from "./icons/SkillIconsLinuxDark"
@@ -16,6 +17,7 @@ import SkillIconsTailwindcssDark from "./icons/SkillIconsTailwindcssDark"
 import SkillIconsTypescript from "./icons/SkillIconsTypescript"
 
 type Tech =
+	| "blender"
 	| "prisma"
 	| "figma"
 	| "rust"
@@ -35,6 +37,7 @@ type Tech =
 type Data = Record<Tech, { name: string; Icon: React.FC }>
 
 const techstacks: Data = {
+	blender: { name: "Blender", Icon: () => <SkillIconsBlenderDark /> },
 	figma: {
 		name: "Figma",
 		Icon: () => <SkillIconsFigmaDark />,
