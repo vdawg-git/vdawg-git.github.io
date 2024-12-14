@@ -11,7 +11,6 @@ export default async function sitemap() {
 	// }))
 	const projects = getProjects().map((project) => ({
 		url: `${baseUrl}/projects/${project.slug}`,
-		lastModified: project.metadata.publishedAt,
 	}))
 
 	let routes = [""].map((route) => ({
