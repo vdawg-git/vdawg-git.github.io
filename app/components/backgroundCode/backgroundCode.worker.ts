@@ -1,12 +1,13 @@
 import { highlight } from "sugar-high"
 import { diffLines, type Change } from "diff"
 import prettier from "prettier"
-import parserHtml from "prettier/plugins/html"
+import prettierHtml from "prettier/plugins/html"
 
 import {
 	auditTime,
 	combineLatest,
 	delay,
+	distinctUntilChanged,
 	map,
 	of,
 	startWith,
@@ -28,14 +29,14 @@ self.onmessage = (event: MessageEvent<string>) => {
 }
 
 const highlighted$ = message$.pipe(
-	auditTime(20),
+	auditTime(100),
 	map(cleanupHtml),
 	switchMap(formatHTML),
 	map(highlight)
 )
 
 combineLatest([
-	highlighted$.pipe(auditTime(500), startWith(undefined)),
+	highlighted$.pipe(auditTime(900), startWith(undefined)),
 	highlighted$,
 ])
 	.pipe(
@@ -46,7 +47,8 @@ combineLatest([
 			}
 
 			return of(diffLines(debounced, current).map(diffPartToHTML).join(""))
-		})
+		}),
+		distinctUntilChanged()
 	)
 	.subscribe((response) => {
 		self.postMessage(response)
@@ -63,7 +65,7 @@ function formatHTML(html: string) {
 	return prettier.format(html, {
 		parser: "html",
 		printWidth: 120,
-		plugins: [parserHtml],
+		plugins: [prettierHtml],
 	})
 }
 

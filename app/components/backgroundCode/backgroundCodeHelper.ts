@@ -1,7 +1,7 @@
 import { auditTime, map, Observable } from "rxjs"
 
 export function initialzeCodeBackground() {
-	// Dont do anything on mobile, as its too heavy
+	// Don't do anything on mobile, as its too heavy
 	if (window.innerWidth < 520) return () => {}
 
 	const codeWorker = new Worker(
