@@ -24,23 +24,23 @@ Statemanagement is done with Svelte Stores and Rxjs.
 
 ## The Story
 
-Creating your own color scheme is a lot of work. So you usually start by copying something which already exists. Color-wise but also the code structure. If you just copy though, you won't get any upstream improvments. So maybe you fork. But then changing a lot in the code base will create a lot of work in the future.
+Creating your own color scheme is a lot of work. So you usually start by copying something which already exists. Color-wise but also the code structure. If you just copy though, you won't get any upstream improvments. So maybe you fork. But then changing a lot in the code base will create a much more work in the future.
 
 I am lazy and wanted something **easy** and quick.
-And as I am eying Neovim as a VS Code Neovim plugin user, it preferably should be easy to port to Vim, too.
+And as I am eying Neovim as a VS Code Neovim plugin user, it preferably should be easy to port to Neovim, too.
 
-Naturally I spent a lot of time looking at different color schemes and how they do it. None were satisfying, except Catppuccin. It allows you to override the colors within the plugin and it updates the UI and the syntax colors based on that.
+Thus I spent way too much time looking at different color schemes and how they do everything. None were satisfying, except Catppuccin. It allows you to override the colors within the plugin, updating the UI and the syntax colors based on that.
 The Neovim plugin is also really good.
-Plus it has a lot of colors, making it versatile for different GUIs (for example a website which can feature more than just two neutral colors.)
+Plus it has a lot of colors, making it versatile for different use-cases (for example a color theme for a website)
 
 So Catppuccin it is. Then I discovered that they also have some nice JS packages which made creating the app easier.
 
 However, I realized that simply changing the colors is not enough.
 I am a Gruvbox Material user. I like warm colors for my eyes and Catppuccin uses mostly blue tones for its syntax highlighting
-and chaning blue to yellow will lead to some UI elements looking like they have a warn state.
+and changing blue to yellow will lead to some UI elements looking like they have a warn state.
 
-So I did fork the Catppuccin repository and created a codemod with Ast-Grep to mass-change colors programatically, blacklisting many UI elements. Like that I can just pull the latest changes and then apply the script again.
+So I ended up fork the Catppuccin repository and created a codemod with Ast-Grep to mass-change colors programmatically, blacklisting many UI elements. Like that I can just hard reset, pull the latest changes and apply the script again.
 
 Then I also added the feature to use custom Catppuccin VS Code theme files in the app and I was finally ready to go.
 
-I sticked to Gruvbox Material though (¯¯٥)
+<br />I sticked to Gruvbox Material though (¯¯٥)
