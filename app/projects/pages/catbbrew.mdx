@@ -13,18 +13,18 @@ color: "yellow"
 
 ## TLDR
 
-I wanted to create my color scheme and fell into a rabbit whole. In the end I created this tool to make it easier for people to create their own color themes using Catppuccin as the base.
+I wanted to create my color scheme and fell into a rabbit hole. In the end I created this tool to make it easier for people to create their own color themes using Catppuccin as the base.
 
 ## Techstack
 
 I used Svelte, Tailwind and Rxjs. My goal was to keep it simple.<br/>
-Statemanagement is done with Svelte Stores and Rxjs.
+State-management is done with Svelte Stores and Rxjs.
 
 <TechStack techs={["Typescript", "Svelte", "rxjs", "Tailwind", "Figma"]} />
 
 ## The Story
 
-Creating your own color scheme is a lot of work. So you usually start by copying something which already exists. Color-wise but also the code structure. If you just copy though, you won't get any upstream improvments. So maybe you fork. But then changing a lot in the code base will create a much more work in the future.
+Creating your own color scheme is a lot of work. So you usually start by copying something which already exists. Color-wise but also the code structure. If you just copy though, you won't get any upstream improvments. So maybe you fork. But then changing a lot in the code base will create much more work in the future.
 
 I am lazy and wanted something **easy** and quick.
 And as I am eying Neovim as a VS Code Neovim plugin user, it preferably should be easy to port to Neovim, too.
@@ -39,7 +39,7 @@ However, I realized that simply changing the colors is not enough.
 I am a Gruvbox Material user. I like warm colors for my eyes and Catppuccin uses mostly blue tones for its syntax highlighting
 and changing blue to yellow will lead to some UI elements looking like they have a warn state.
 
-So I ended up fork the Catppuccin repository and created a codemod with Ast-Grep to mass-change colors programmatically, blacklisting many UI elements. Like that I can just hard reset, pull the latest changes and apply the script again.
+So I ended up forking the Catppuccin repository and created a code-mod with Ast-Grep to mass-change colors programmatically, blacklisting many UI elements. Like that I can just hard reset, pull the latest changes and apply the script again.
 
 Then I also added the feature to use custom Catppuccin VS Code theme files in the app and I was finally ready to go.
 
