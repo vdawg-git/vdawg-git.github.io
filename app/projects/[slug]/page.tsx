@@ -6,6 +6,7 @@ import { getProjects } from "../utils"
 import { GlitchText } from "app/components/glitchText"
 import { Button } from "app/components/button"
 import { TechStack } from "app/components/techStack"
+import { CreatedLogos } from "./CreatedLogos"
 
 export type Parameter = {
 	slug: string
@@ -31,7 +32,6 @@ export async function generateMetadata(props: { params: Promise<Parameter> }) {
 		publishedAt: publishedTime,
 		summary: description,
 	} = project.metadata
-	const ogImage = `/og/${params.slug}.png`
 
 	return {
 		title,
@@ -42,17 +42,11 @@ export async function generateMetadata(props: { params: Promise<Parameter> }) {
 			type: "article",
 			publishedTime,
 			url: `${baseUrl}/projects/${project.slug}`,
-			images: [
-				{
-					url: ogImage,
-				},
-			],
 		},
 		twitter: {
 			card: "summary_large_image",
 			title,
 			description,
-			images: [ogImage],
 		},
 	}
 }
@@ -78,7 +72,6 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 						"@type": "BlogPosting",
 						headline: `Project: ${metadata.title}`,
 						description: metadata.summary,
-						image: `/og/${params.slug}.png`,
 						url: `${baseUrl}/projects/${slug}`,
 						author: {
 							"@type": "VDawg",
@@ -124,6 +117,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 					components={{
 						a: (text) => <Button as="a" {...text} color="yellow" />,
 						TechStack,
+						CreatedLogos,
 					}}
 				/>
 			</article>
