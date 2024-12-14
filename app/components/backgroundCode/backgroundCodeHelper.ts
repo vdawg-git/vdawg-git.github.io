@@ -1,6 +1,9 @@
-import type { BackgroundCodeArgument } from "./types"
+import { auditTime, map, Observable } from "rxjs"
 
 export function initialzeCodeBackground() {
+	// Dont do anything on mobile, as its too heavy
+	if (window.innerWidth < 800) return () => {}
+
 	const codeWorker = new Worker(
 		new URL("./backgroundCode.worker.ts", import.meta.url),
 		{
@@ -10,9 +13,22 @@ export function initialzeCodeBackground() {
 
 	codeWorker.addEventListener("message", setBackgroundCode)
 
-	const observer = new MutationObserver(async () =>
-		sendHTMLtoWorker(codeWorker)
-	)
+	const subscription = new Observable((subscriber) => {
+		const observer = new MutationObserver(() => subscriber.next(undefined))
+
+		observer.observe(getAppElement(), {
+			childList: true,
+			subtree: true,
+			characterData: true,
+			attributes: true,
+		})
+
+		return () => observer.disconnect()
+	})
+		.pipe(auditTime(40), map(getAppHTML))
+		.subscribe((html) => {
+			codeWorker.postMessage(html)
+		})
 
 	const element = getAppElement()
 	if (!element) {
@@ -20,25 +36,16 @@ export function initialzeCodeBackground() {
 		return () => {}
 	}
 
-	observer.observe(element, {
-		childList: true,
-		subtree: true,
-		characterData: true,
-		attributes: true,
-	})
-
 	sendHTMLtoWorker(codeWorker)
 
 	return () => {
 		codeWorker.terminate()
-		observer.disconnect()
+		subscription.unsubscribe()
 	}
 }
 
 async function sendHTMLtoWorker(worker: Worker) {
-	const message: BackgroundCodeArgument = {
-		htmlString: getAppHTML() ?? "",
-	}
+	const message = getAppHTML() ?? ""
 
 	worker.postMessage(message)
 }
@@ -58,9 +65,9 @@ function getCodeBlock() {
 }
 
 function getAppElement() {
-	return document.querySelector("main")
+	return document.querySelector("main")!
 }
 
 function getAppHTML() {
-	return getAppElement()?.innerHTML
+	return getAppElement().innerHTML
 }

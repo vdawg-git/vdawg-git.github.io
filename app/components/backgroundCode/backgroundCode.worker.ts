@@ -3,7 +3,6 @@ import { diffLines, type Change } from "diff"
 import prettier from "prettier"
 import parserHtml from "prettier/plugins/html"
 
-import type { BackgroundCodeArgument } from "./types"
 import {
 	auditTime,
 	combineLatest,
@@ -23,14 +22,13 @@ const longStringsRegex = /(?<==")([^"]{20,})(?=")/gm
 const noContentTagsRegex = /(<(\w*)[^>]*)><\/\2>/gm
 const scriptTagRegex = /<script.*>.*<\/script>/gm
 
-const message$ = new Subject<BackgroundCodeArgument>()
-self.onmessage = (event: MessageEvent<BackgroundCodeArgument>) => {
+const message$ = new Subject<string>()
+self.onmessage = (event: MessageEvent<string>) => {
 	message$.next(event.data)
 }
 
 const highlighted$ = message$.pipe(
-	auditTime(50),
-	map((data) => cleanupHtml(data.htmlString)),
+	map(cleanupHtml),
 	switchMap(formatHTML),
 	map(highlight)
 )

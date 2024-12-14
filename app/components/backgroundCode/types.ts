@@ -1,3 +1,1 @@
-export type BackgroundCodeArgument = {
-	htmlString: string
-}
+export {}
