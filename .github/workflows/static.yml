@@ -33,7 +33,7 @@ jobs:
           run_install: true
       - name: Set Environment Variables
         env:
-          BASE_PATH: /portfolio2
+          BASE_PATH: /
         run: |
           echo "" > .env.local
           echo BASE_PATH=$BASE_PATH >> .env.local
