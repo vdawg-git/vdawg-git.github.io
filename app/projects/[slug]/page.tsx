@@ -30,17 +30,14 @@ export async function generateMetadata(props: { params: Promise<Parameter> }) {
 		title,
 		publishedAt: publishedTime,
 		summary: description,
-		image,
 	} = project.metadata
-	const ogImage = image
-		? image
-		: `${baseUrl}/og?title=${encodeURIComponent(title)}`
+	const ogImage = `/og/${params.slug}.png`
 
 	return {
 		title,
 		description,
 		openGraph: {
-			title,
+			title: `Project: ${title}`,
 			description,
 			type: "article",
 			publishedTime,
@@ -79,11 +76,9 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 					__html: JSON.stringify({
 						"@context": "https://schema.org",
 						"@type": "BlogPosting",
-						headline: metadata.title,
+						headline: `Project: ${metadata.title}`,
 						description: metadata.summary,
-						image: metadata.image
-							? `${baseUrl}${metadata.image}`
-							: `/og?title=${encodeURIComponent(metadata.title)}`,
+						image: `/og/${params.slug}.png`,
 						url: `${baseUrl}/projects/${slug}`,
 						author: {
 							"@type": "VDawg",
@@ -112,12 +107,12 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 				</div>
 
 				{metadata.image && (
-					<Image
+					<img
 						src={metadata.image}
 						alt={`${metadata.title}`}
 						width={200}
 						height={200}
-						priority
+						loading="eager"
 						className="border-8 border-double border-bg2  grow-0 shrink-0 sm:w-[200px] w-[160px] aspect-square object-cover"
 					/>
 				)}
