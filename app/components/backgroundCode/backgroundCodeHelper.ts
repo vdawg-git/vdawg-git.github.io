@@ -2,7 +2,7 @@ import { auditTime, map, Observable } from "rxjs"
 
 export function initialzeCodeBackground() {
 	// Dont do anything on mobile, as its too heavy
-	if (window.innerWidth < 800) return () => {}
+	if (window.innerWidth < 520) return () => {}
 
 	const codeWorker = new Worker(
 		new URL("./backgroundCode.worker.ts", import.meta.url),
@@ -25,7 +25,7 @@ export function initialzeCodeBackground() {
 
 		return () => observer.disconnect()
 	})
-		.pipe(auditTime(40), map(getAppHTML))
+		.pipe(auditTime(5), map(getAppHTML))
 		.subscribe((html) => {
 			codeWorker.postMessage(html)
 		})
