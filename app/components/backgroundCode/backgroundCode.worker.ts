@@ -28,6 +28,7 @@ self.onmessage = (event: MessageEvent<string>) => {
 }
 
 const highlighted$ = message$.pipe(
+	auditTime(20),
 	map(cleanupHtml),
 	switchMap(formatHTML),
 	map(highlight)
