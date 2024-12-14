@@ -22,7 +22,7 @@ export default function Footer() {
 							<a
 								rel="noopener noreferrer"
 								target="_blank"
-								href="https://github.com/vdawg-git/portfolio2"
+								href="https://www.instagram.com/vdawg.jpg/"
 							>
 								<InstagramIcon className="size-6" />
 								<p className="">Instagram</p>
@@ -35,7 +35,7 @@ export default function Footer() {
 							<a
 								rel="noopener noreferrer"
 								target="_blank"
-								href="https://github.com/vdawg-git/portfolio2"
+								href="https://github.com/vdawg-git/vdawg-git.github.io"
 							>
 								<div className="i-pixelarticons-external-link size-6" />
 								<p className="">view source</p>
