@@ -48,7 +48,7 @@ function smallItem({ metadata, slug }: MarkdownData, index: number) {
 					className="shrink-0 grow-0   flex items-center justify-center   space-y-1 sm:self-center "
 					href={`/projects/${slug}`}
 				>
-					<Image
+					<img
 						src={metadata.image}
 						alt={metadata.title}
 						width={144}
