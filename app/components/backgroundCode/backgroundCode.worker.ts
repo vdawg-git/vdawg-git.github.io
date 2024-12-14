@@ -43,7 +43,7 @@ combineLatest([
 		// Show diffs with the non-updated previous state for 200ms
 		switchMap(([debounced, current], index) => {
 			if (debounced === undefined || debounced === current) {
-				return of(current).pipe(delay(index === 0 ? 0 : 200))
+				return of(current).pipe(delay(index === 0 ? 0 : 1100))
 			}
 
 			return of(diffLines(debounced, current).map(diffPartToHTML).join(""))
