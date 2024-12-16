@@ -1,6 +1,6 @@
 import { auditTime, map, Observable } from "rxjs"
 
-export function initialzeCodeBackground() {
+export function initializeCodeBackground() {
 	// Don't do anything on mobile, as its too heavy
 	if (window.innerWidth < 520) return () => {}
 
@@ -25,7 +25,7 @@ export function initialzeCodeBackground() {
 
 		return () => observer.disconnect()
 	})
-		.pipe(auditTime(10), map(getAppHTML))
+		.pipe(auditTime(250), map(getAppHTML))
 		.subscribe((html) => {
 			codeWorker.postMessage(html)
 		})

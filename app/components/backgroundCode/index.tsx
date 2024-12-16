@@ -1,10 +1,10 @@
 "use client"
 import { useEffect } from "react"
-import { initialzeCodeBackground } from "./backgroundCodeHelper"
+import { initializeCodeBackground } from "./backgroundCodeHelper"
 
 export function BackgroundCode() {
 	useEffect(() => {
-		const unsubscribeBackground = initialzeCodeBackground()
+		const unsubscribeBackground = initializeCodeBackground()
 
 		return () => {
 			unsubscribeBackground()

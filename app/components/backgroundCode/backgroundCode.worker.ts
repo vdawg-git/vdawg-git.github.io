@@ -16,8 +16,8 @@ import {
 } from "rxjs"
 
 const colors = {
-	green: "rgb(0, 255, 200, 0.25)",
-	red: "rgba(229,83,75,0.25)",
+	green: "rgb(137, 180, 130, 0.25)",
+	red: "rgb(234, 105, 98, 0.25)",
 }
 const longStringsRegex = /(?<==")([^"]{20,})(?=")/gm
 const noContentTagsRegex = /(<(\w*)[^>]*)><\/\2>/gm
@@ -29,7 +29,6 @@ self.onmessage = (event: MessageEvent<string>) => {
 }
 
 const highlighted$ = message$.pipe(
-	auditTime(100),
 	map(cleanupHtml),
 	switchMap(formatHTML),
 	map(highlight)
@@ -46,9 +45,7 @@ combineLatest([
 				return of(current).pipe(delay(index === 0 ? 0 : 1200))
 			}
 
-			return of(
-				diffLines(debounced, current).map(diffPartToHTML).join("")
-			).pipe(delay(30))
+			return of(diffLines(debounced, current).map(diffPartToHTML).join(""))
 		}),
 		distinctUntilChanged()
 	)
