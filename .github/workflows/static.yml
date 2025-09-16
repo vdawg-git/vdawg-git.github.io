@@ -29,7 +29,6 @@ jobs:
       - name: Install Packages
         uses: pnpm/action-setup@v4
         with:
-          version: 9.12.1
           run_install: true
       - name: Set Environment Variables
         env:
