@@ -31,7 +31,7 @@ self.onmessage = (event: MessageEvent<string>) => {
 const highlighted$ = message$.pipe(
 	map(cleanupHtml),
 	switchMap(formatHTML),
-	map(highlight)
+	map((html) => highlight(html))
 )
 
 combineLatest([
