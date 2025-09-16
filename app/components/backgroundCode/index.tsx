@@ -17,7 +17,7 @@ export function BackgroundCode() {
 				<pre>
 					<code
 						id="bg-code"
-						className="overflow-hidden text-[11px]     absolute top-24 [text-shadow:0_0_8px_currentColor] left-0"
+						className="overflow-hidden text-[11px]  opacity-0 data-rendered:opacity-40 md:data-rendered:opacity-100 transition-opacity duration-1200 delay-250     absolute top-24 [text-shadow:0_0_8px_currentColor] left-0 "
 					></code>
 				</pre>
 			</div>

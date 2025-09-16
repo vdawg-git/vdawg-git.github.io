@@ -23,7 +23,7 @@ export function Projects() {
 						}
 						return 1
 					})
-					.map((data, index) => smallItem(data, index))}
+					.map((data, index) => ProjectItem(data, index))}
 			</div>
 
 			<div className="absolute contain-[layout_size_style]  -right-1/2 z-10 bottom-24 bg-radial mix-blend-color-dodge from-fg/50 to-transparent to-60% w-[150%] h-full   pointer-events-none" />
@@ -31,11 +31,11 @@ export function Projects() {
 	)
 }
 
-function smallItem({ metadata, slug }: MarkdownData, index: number) {
+function ProjectItem({ metadata, slug }: MarkdownData, index: number) {
 	return (
 		<div
 			className={cn(
-				"flex group   outline-dimYellow flex-col [outline-style:double] leading-[1.1]   [outline-width:4px] -outline-offset-2   gap-2 items-start  ",
+				"flex group   outline-dimYellow pb-4 flex-col [outline-style:double] leading-[1.1]   [outline-width:4px] -outline-offset-2   gap-2 items-start  ",
 				"col-span-2"
 				// (index === 0 || index === 1) && "col-span-3"
 			)}

@@ -19,13 +19,13 @@ export function initializeCodeBackground() {
 		observer.observe(getAppElement(), {
 			childList: true,
 			subtree: true,
-			characterData: true,
+			characterData: false,
 			attributes: true,
 		})
 
 		return () => observer.disconnect()
 	})
-		.pipe(auditTime(250), map(getAppHTML))
+		.pipe(auditTime(80), map(getAppHTML))
 		.subscribe((html) => {
 			codeWorker.postMessage(html)
 		})
@@ -57,11 +57,15 @@ async function setBackgroundCode({ data }: MessageEvent<string>) {
 		return
 	}
 
+	if (!element.dataset.rendered) {
+		element.dataset.rendered = "true"
+	}
+
 	element.innerHTML = data
 }
 
-function getCodeBlock() {
-	return document.querySelector("#bg-code")
+function getCodeBlock(): HTMLElement | undefined {
+	return (document.querySelector("#bg-code") as HTMLElement) ?? undefined
 }
 
 function getAppElement() {

@@ -1,4 +1,3 @@
-import { getBlogPosts } from "app/blog/utils"
 import { getProjects } from "./projects/utils"
 
 export const baseUrl = "https://vdawg.me"

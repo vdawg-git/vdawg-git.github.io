@@ -1,5 +1,5 @@
-import { InstagramIcon } from "./icons/instagram"
 import "./footer.css"
+import { links } from "./consts"
 
 export default function Footer() {
 	return (
@@ -7,27 +7,14 @@ export default function Footer() {
 			<footer className=" max-w-3xl relative w-full text-bg4 mb-6 mt-24  mx-auto grow-0 ">
 				<div className="max-sm:flex-col  gridd ">
 					<ul className="font-sm    flex flex-col  md:flex-row  ">
-						<li>
-							<a
-								rel="noopener noreferrer"
-								target="_blank"
-								href="https://github.com/vdawg-git"
-							>
-								<div className="i-pixelarticons-github size-6"></div>
-								<p className="">Github</p>
-							</a>
-						</li>
-
-						<li>
-							<a
-								rel="noopener noreferrer"
-								target="_blank"
-								href="https://www.instagram.com/vdawg.jpg/"
-							>
-								<InstagramIcon className="size-6" />
-								<p className="">Instagram</p>
-							</a>
-						</li>
+						{links.map(({ label, link, Icon }) => (
+							<li key={link}>
+								<a rel="noopener noreferrer" target="_blank" href={link}>
+									<Icon />
+									<p className="">{label}</p>
+								</a>
+							</li>
+						))}
 					</ul>
 
 					<ul className=" col-start-2   -col-end-1 max-sm:row-start-1 max-sm:row-end-2 h-full">
