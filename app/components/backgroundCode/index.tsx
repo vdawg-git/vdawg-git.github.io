@@ -9,7 +9,7 @@ export function BackgroundCode() {
 		return () => {
 			unsubscribeBackground()
 		}
-	})
+	}, [])
 
 	return (
 		<div className="contain-[style_size_layout_paint] max-w-screen overflow-hidden -z-30 absolute inset-0 pointer-events-none">

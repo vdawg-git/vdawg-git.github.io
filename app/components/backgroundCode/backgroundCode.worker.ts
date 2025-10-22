@@ -22,6 +22,7 @@ const colors = {
 const longStringsRegex = /(?<==")([^"]{20,})(?=")/gm
 const noContentTagsRegex = /(<(\w*)[^>]*)><\/\2>/gm
 const scriptTagRegex = /<script.*>.*<\/script>/gm
+const svgTagRegex = /(<svg[^>]*>)[\s\S]*?<\/svg>/gm
 
 const message$ = new Subject<string>()
 self.onmessage = (event: MessageEvent<string>) => {
@@ -35,14 +36,14 @@ const highlighted$ = message$.pipe(
 )
 
 combineLatest([
-	highlighted$.pipe(auditTime(1100), startWith(undefined)),
+	highlighted$.pipe(auditTime(1800), startWith(undefined)),
 	highlighted$,
 ])
 	.pipe(
-		// Show diffs with the non-updated previous state for 200ms
+		// Show diffs with the non-updated previous state
 		switchMap(([debounced, current], index) => {
 			if (debounced === undefined || debounced === current) {
-				return of(current).pipe(delay(index === 0 ? 0 : 1200))
+				return of(current).pipe(delay(index === 0 ? 0 : 2700))
 			}
 
 			return of(diffLines(debounced, current).map(diffPartToHTML).join(""))
@@ -58,12 +59,13 @@ function cleanupHtml(html: string) {
 		.replace(longStringsRegex, "◦◦◦") // class="..long string.." => class="◦◦◦"
 		.replace(noContentTagsRegex, "$1/>") // <div></div> => <div/>
 		.replace(scriptTagRegex, "")
+		.replace(svgTagRegex, "$1◦◦◦</svg>")
 }
 
 function formatHTML(html: string) {
 	return prettier.format(html, {
 		parser: "html",
-		printWidth: 120,
+		printWidth: 160,
 		plugins: [prettierHtml],
 	})
 }
