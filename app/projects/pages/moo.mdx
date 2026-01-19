@@ -1,0 +1,46 @@
+---
+title: "Moo"
+summary: "TUI music libary with smart playlists"
+image: "/images/projects/moo.svg"
+sort: 99
+color: "yellow"
+---
+
+## TLDR
+
+A terminal music player/library with nice declaritive smart-playlists.
+The playlists are easy to create, back-up and version control. Just simple Yaml.
+
+## Preview
+
+![Screenshot of Moo](/images/projects/moo.webp)
+
+## Techstack
+
+React, OpenTui with React bindings, Bun for native Typescript execution and to compile the binary.
+State is managed through XState/Store in conjunction with RxJs.
+
+<TechStack techs={["React", "Typescript", "rxjs", "xstate"]} />
+
+## The Story
+
+It started back in the days with iTunes. I discovered that it offererd decent smart-playlists, even if the GUI was a bit off.
+But they worked and I spent a lot of time tweaking them. But I also lost them everytime I messed up my PC. Which happened too often.
+
+Slowly I stopped spending too much time on them. And then I also switched to Linux.
+The only app with somewhat decent smart-playlists I could find was Rhytimbox.
+But nothing was "optimal". I could do it better.
+So I am. As a (not so) simple TUI app.
+
+## The (future) goals:
+
+**Easy to use**
+
+- Runner to switch to playlists/albums etc. and to execute commands.
+- VIM bindings and arrow keys
+
+**Quick Tagging**
+Change mood/genre of the track while you listen to your playlists and curate them like that
+
+**Device sync**
+(not implemented yet): Sync playlists to your phone

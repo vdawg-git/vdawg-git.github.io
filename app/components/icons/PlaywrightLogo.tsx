@@ -1,8 +1,6 @@
-import type { FunctionComponent, SVGProps } from "react"
+import type { SVGProps } from "react"
 
-export const PlaywrightLogo: FunctionComponent<SVGProps<SVGSVGElement>> = (
-	props
-) => {
+export function PlaywrightLogo(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			viewBox="0 0 400 400"

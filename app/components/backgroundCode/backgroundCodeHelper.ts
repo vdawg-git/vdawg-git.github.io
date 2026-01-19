@@ -68,10 +68,11 @@ function getCodeBlock(): HTMLElement | undefined {
 	return (document.querySelector("#bg-code") as HTMLElement) ?? undefined
 }
 
+function getAppHTML() {
+	return getAppElement().innerHTML
+}
+
 function getAppElement() {
 	return document.querySelector("main")!
 }
 
-function getAppHTML() {
-	return getAppElement().innerHTML
-}

@@ -15,6 +15,7 @@ import SkillIconsRust from "./icons/SkillIconsRust"
 import SkillIconsSvelte from "./icons/SkillIconsSvelte"
 import SkillIconsTailwindcssDark from "./icons/SkillIconsTailwindcssDark"
 import SkillIconsTypescript from "./icons/SkillIconsTypescript"
+import { XStateIcon } from "./icons/XState"
 
 type Tech =
 	| "blender"
@@ -34,10 +35,12 @@ type Tech =
 	| "rxjs"
 	| "electron"
 	| "redux"
+	| "xstate"
 type Data = Record<Tech, { name: string; Icon: React.FC }>
 
 const techstacks: Data = {
 	blender: { name: "Blender", Icon: () => <SkillIconsBlenderDark /> },
+	xstate: { name: "xstate", Icon: () => <XStateIcon /> },
 	figma: {
 		name: "Figma",
 		Icon: () => <SkillIconsFigmaDark />,

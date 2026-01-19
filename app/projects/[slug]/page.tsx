@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
 import { CustomMDX } from "app/components/mdx"
-import Image from "next/image"
 import { baseUrl } from "app/sitemap"
 import { getProjects } from "../utils"
 import { GlitchText } from "app/components/glitchText"

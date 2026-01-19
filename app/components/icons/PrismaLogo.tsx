@@ -1,8 +1,6 @@
-import type { FunctionComponent, SVGProps } from "react"
+import type { SVGProps } from "react"
 
-export const PrismaLogo: FunctionComponent<SVGProps<SVGSVGElement>> = (
-	props
-) => {
+export function PrismaLogo(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			viewBox="0 0 24 24"
