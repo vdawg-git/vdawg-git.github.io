@@ -22,6 +22,7 @@ import { XStateIcon } from "./icons/XState"
 type Tech =
 	| "blender"
 	| "sqlite"
+	| "drizzle"
 	| "prisma"
 	| "figma"
 	| "rust"
