@@ -18,7 +18,9 @@ export function Navbar() {
 				className=" w-full  grid grid-cols-[1fr_auto_1fr]   relative px-4 pb-0 items-center "
 				id="nav"
 			>
-				<div className="justify-self-start">✦―――――✦―――――✦</div>
+				<div className="justify-self-start w-0 overflow-hidden sm:w-auto">
+					✦―――――✦―――――✦
+				</div>
 
 				<div className="flex">
 					<Link
