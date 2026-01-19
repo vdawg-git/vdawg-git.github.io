@@ -80,7 +80,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 				}}
 			/>
 
-			<div className="flex  flex-col-reverse md:flex-row  items-start   justify-start sm:items-end mt-4 lg:mt-12 md:gap-8 gap-4 md:justify-between">
+			<div className="flex  flex-col-reverse md:flex-row  items-start md:items-center   justify-start  mt-4 lg:mt-12 md:gap-8 gap-4 md:justify-between md:border-4 border-bg3 border-double md:p-4 md:[box-shadow:var(--color-bg1)_16px_16px] ">
 				<div className="">
 					<GlitchText
 						as="h1"
@@ -105,7 +105,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 						width={200}
 						height={200}
 						loading="eager"
-						className="border-8 border-double border-bg2  grow-0 shrink-0 sm:w-[200px] w-[160px] aspect-square object-cover"
+						className="grow-0 shrink-0 sm:w-[200px] w-[160px] aspect-square object-contain opacity-55"
 					/>
 				)}
 			</div>
