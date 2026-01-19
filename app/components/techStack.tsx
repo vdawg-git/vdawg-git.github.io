@@ -1,3 +1,4 @@
+import { DrizzleLogo } from "./icons/drizzle"
 import { PlaywrightLogo } from "./icons/PlaywrightLogo"
 import { PrismaLogo } from "./icons/PrismaLogo"
 import { SkillIconsAstro } from "./icons/SkillIconsAstro"
@@ -12,6 +13,7 @@ import { SkillIconsReactDark } from "./icons/SkillIconsReactDark"
 import SkillIconsReactivexDark from "./icons/SkillIconsReactivexDark"
 import { SkillIconsRedux } from "./icons/SkillIconsRedux"
 import SkillIconsRust from "./icons/SkillIconsRust"
+import { SQLiteLogo } from "./icons/SkillIconsSqlite"
 import SkillIconsSvelte from "./icons/SkillIconsSvelte"
 import SkillIconsTailwindcssDark from "./icons/SkillIconsTailwindcssDark"
 import SkillIconsTypescript from "./icons/SkillIconsTypescript"
@@ -19,6 +21,7 @@ import { XStateIcon } from "./icons/XState"
 
 type Tech =
 	| "blender"
+	| "sqlite"
 	| "prisma"
 	| "figma"
 	| "rust"
@@ -64,6 +67,14 @@ const techstacks: Data = {
 	react: {
 		name: "React",
 		Icon: () => <SkillIconsReactDark />,
+	},
+	sqlite: {
+		name: "SQLite",
+		Icon: () => <SQLiteLogo />,
+	},
+	drizzle: {
+		name: "Drizzle",
+		Icon: () => <DrizzleLogo />,
 	},
 	rust: {
 		name: "Rust",
@@ -113,7 +124,7 @@ type Props = {
 
 export function TechStack({ techs }: Props) {
 	return (
-		<div className="flex flex-wrap  gap-2 justify-start">
+		<div className="flex flex-wrap  gap-2 md:gap-4 justify-start">
 			{techs.map((key) => {
 				const data = techstacks[key.toLowerCase()]
 				if (!data) {
@@ -122,8 +133,12 @@ export function TechStack({ techs }: Props) {
 				const { Icon, name } = data
 
 				return (
-					<div key={key} className="size-8 sepia-70 hover:sepia-0" title={name}>
-						<Icon className="size-8 " />
+					<div
+						key={key}
+						className="size-8 md:size-16 sepia-70 hover:sepia-0"
+						title={name}
+					>
+						<Icon className="size-16 " />
 					</div>
 				)
 			})}
