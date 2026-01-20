@@ -6,6 +6,7 @@ import { GlitchText } from "app/components/glitchText"
 import { Button } from "app/components/button"
 import { TechStack } from "app/components/techStack"
 import { CreatedLogos } from "./CreatedLogos"
+import Link from "next/link"
 
 export type Parameter = {
 	slug: string
@@ -96,6 +97,18 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 					>
 						{metadata.summary}
 					</GlitchText>
+
+					{metadata.link && (
+						<Button className="text-orange mt-4">
+							<Link
+								href={metadata.link}
+								target="_blank"
+								className="text-orange"
+							>
+								Take a look
+							</Link>
+						</Button>
+					)}
 				</div>
 
 				{metadata.image && (

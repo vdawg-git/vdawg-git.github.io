@@ -10,6 +10,7 @@ type Metadata = {
 	color?: string
 	banner?: string
 	pixelate?: boolean
+	link?: string
 }
 
 export type MarkdownData = {
@@ -35,7 +36,7 @@ function parseFrontmatter(fileContent: string) {
 			accumulator[key.trim() as keyof Metadata] = value
 			return accumulator
 		},
-		{} as Partial<Metadata>
+		{} as Partial<Metadata>,
 	)
 
 	return { metadata: metadata as Metadata, content }
