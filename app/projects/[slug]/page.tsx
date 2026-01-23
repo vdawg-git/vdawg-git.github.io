@@ -99,7 +99,7 @@ export default async function Project(props: { params: Promise<Parameter> }) {
 					</GlitchText>
 
 					{metadata.link && (
-						<Button className="text-orange mt-4">
+						<Button className="text-orange">
 							<Link
 								href={metadata.link}
 								target="_blank"
